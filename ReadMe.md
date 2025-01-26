@@ -90,7 +90,5 @@
 <div align="center">
   <img align="center" alt="coding" width="250" src="https://camo.githubusercontent.com/417eb0441e2e632d497f8bccca6845a75f5974743a8ae1f8fbe64b794a0e53dc/68747470733a2f2f692e696d67666c69702e636f6d2f363565667a6f2e676966">
   <br>
-    <img src="/assets/github-snake.svg" alt="SVG Example">
+<p align="center"> <img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg" alt="coder-mahi" /> </p> 
 </div>
-
-![GIF Example](/assets/CLine.gif)
