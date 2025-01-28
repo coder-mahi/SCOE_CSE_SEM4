@@ -1,7 +1,5 @@
 #include <iostream>
 using namespace std;
-
-// Define Node structure
 struct Node {
     int data;
     Node *next;
@@ -14,14 +12,11 @@ struct Node {
     }
 };
 
-// Declare global head pointer
 Node *head = nullptr;
-
 // Function to insert a node at a specific position
 void insert(int val, int pos) {
     Node *newNode = new Node(val);
-
-    if (pos == 0) { // Insert at the beginning
+    if (pos == 0) {                     // Insert at the beginning
         newNode->next = head;
         if (head != nullptr) {
             head->prev = newNode;
@@ -29,10 +24,8 @@ void insert(int val, int pos) {
         head = newNode;
         return;
     }
-
     Node *current = head;
     int count = 0;
-
     while (current != nullptr && count < pos - 1) {
         current = current->next;
         count++;
@@ -43,14 +36,12 @@ void insert(int val, int pos) {
         delete newNode;
         return;
     }
-
     newNode->next = current->next;
     newNode->prev = current;
 
     if (current->next != nullptr) {
         current->next->prev = newNode;
     }
-
     current->next = newNode;
 }
 
@@ -61,7 +52,7 @@ void deleteNode(int pos) {
         return;
     }
 
-    if (pos == 0) { // Delete the first node
+    if (pos == 0) {                   // Delete the first node
         Node *temp = head;
         head = head->next;
         if (head != nullptr) {
@@ -93,7 +84,6 @@ void deleteNode(int pos) {
     delete current;
 }
 
-// Function to display the list
 void display() {
     Node *current = head;
     while (current != nullptr) {
@@ -102,8 +92,6 @@ void display() {
     }
     cout << endl;
 }
-
-// Main function
 int main() {
     int choice, data, pos, cont;
     do {
