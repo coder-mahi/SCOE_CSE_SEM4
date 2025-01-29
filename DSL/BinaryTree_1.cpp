@@ -87,6 +87,7 @@ int main(){
             break;
             case 2:
             display(root);
+            break;
             default:
             cout<<"select valid option..."<<endl;
         }
