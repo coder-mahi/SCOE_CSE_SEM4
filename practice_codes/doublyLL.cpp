@@ -80,7 +80,6 @@ void deleteNode(int pos) {
     if (current->next != nullptr) {
         current->next->prev = current->prev;
     }
-
     delete current;
 }
 
