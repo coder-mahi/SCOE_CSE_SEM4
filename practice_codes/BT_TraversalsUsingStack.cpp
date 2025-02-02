@@ -35,9 +35,10 @@ void inorder(TreeNode *root1){       //LVR
         }
         currentNode = s.top();
         s.pop();
-        cout<<currentNode->data<<" "<<endl;
+        cout<<currentNode->data<<" ";
         currentNode = currentNode->right;
     }
+    cout<<endl;
 }
 void postorder(TreeNode *root1){     //LRV
         stack<TreeNode*> s1,s2;
@@ -53,6 +54,7 @@ void postorder(TreeNode *root1){     //LRV
         cout << s2.top()->data << " ";
         s2.pop();
     }
+    cout<<endl;
 }
 void insert(TreeNode *root1,TreeNode *newNode){
     if(root1==nullptr){
