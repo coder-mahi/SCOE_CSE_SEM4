@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 abstract class Vehicle {
     String brand;
@@ -7,123 +7,122 @@ abstract class Vehicle {
     public Vehicle(String brand, String model) {
         this.brand = brand;
         this.model = model;
-        System.out.println("Vehicle created : " + brand + " " + model);
+        System.out.println("Vehicle created: Brand - " + brand + ", Model - " + model);
     }
-
     public abstract void start();
-
     public abstract void stop();
-
     public final void vehicleInfo() {
-        System.out.println("vehicleof brand : " + brand + ", model: " + model);
+        System.out.println("Vehicle of: Brand - " + this.brand + ", Model - " + this.model);
     }
 }
-
 class Car extends Vehicle {
-    public Car(String b, String m) {
-        super(b, m);
+    public Car(String brand, String model) {
+        super(brand, model);
     }
-
     @Override
     public void start() {
-        System.out.println(this.brand + "Car started");
+        System.out.println(this.brand + " Car started.");
     }
-
     @Override
     public void stop() {
-        System.out.println("Car stopped");
+        System.out.println("Car stopped.");
     }
-
     public void showCarDetails() {
-        System.out.println("Car details: Brand -- " + this.brand + ", Model - " + this.model);
+        System.out.println("Car Details: Brand - " + this.brand + ", Model - " + this.model);
     }
 }
-
 class Bike extends Vehicle {
-    public Bike(String b, String m) {
-        super(b, m);
+    public Bike(String brand, String model) {
+        super(brand, model);
     }
-
     @Override
     public void start() {
-        System.out.println(this.brand + " Bike started");
+        System.out.println(this.brand + " Bike started.");
     }
-
     @Override
     public void stop() {
-        System.out.println("Bike stopped");
+        System.out.println("Bike stopped.");
     }
-
     public void showBikeDetails() {
-        System.out.println("Bike details: Brand - " + this.brand + ", Model - " + this.model);
+        System.out.println("Bike Details: Brand - " + this.brand + ", Model - " + this.model);
     }
 }
-
 class Truck extends Vehicle {
     public Truck(String brand, String model) {
         super(brand, model);
     }
-
     @Override
     public void start() {
-        System.out.println(this.brand + "Truck started");
+        System.out.println(this.brand + " Truck started.");
     }
-
     @Override
     public void stop() {
-        System.out.println("Truck stopped.....");
+        System.out.println("Truck stopped.");
     }
-
     public void showTruckDetails() {
-        System.out.println("Truck detailss : Brand -- " + this.brand + ", Model - " + this.model);
+        System.out.println("Truck Details: Brand - " + this.brand + ", Model - " + this.model);
     }
 }
-
 public class Assignment2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int ch, c;
+        int choice;
         do {
-            System.out.println("1.Car\n2.Bike\n3.Truck");
-            ch = scanner.nextInt();
-            switch (ch) {
+            System.out.println("\nSelect Vehicle Type:\n1. Car\n2. Bike\n3. Truck\n4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();  
+            switch (choice) {
                 case 1:
                     System.out.print("Enter Car Brand: ");
-                    String carBrand = scanner.nextLine();
+                    String carBrand = scanner.next();
+                    scanner.nextLine(); 
                     System.out.print("Enter Car Model: ");
-                    String carModel = scanner.nextLine();
-                    Vehicle car = new Car(carBrand, carModel);
+                    String carModel = scanner.next();
+                    scanner.nextLine(); 
+                    Car car = new Car(carBrand, carModel);
                     car.start();
                     car.stop();
                     car.vehicleInfo();
-                    ((Car) car).showCarDetails();
+                    car.showCarDetails();
                     break;
+
                 case 2:
                     System.out.print("Enter Bike Brand: ");
-                    String bikeBrand = scanner.nextLine();
+                    String bikeBrand = scanner.next();
+                    scanner.nextLine(); 
                     System.out.print("Enter Bike Model: ");
-                    String bikeModel = scanner.nextLine();
-                    Vehicle bike = new Bike(bikeBrand, bikeModel);
+                    String bikeModel = scanner.next();
+                    scanner.nextLine(); 
+                    Bike bike = new Bike(bikeBrand, bikeModel);
                     bike.start();
                     bike.stop();
                     bike.vehicleInfo();
-                    ((Bike) bike).showBikeDetails();
+                    bike.showBikeDetails();
                     break;
+
                 case 3:
                     System.out.print("Enter Truck Brand: ");
-                    String truckBrand = scanner.nextLine();
+                    String truckBrand = scanner.next();
+                    scanner.nextLine(); 
                     System.out.print("Enter Truck Model: ");
-                    String truckModel = scanner.nextLine();
-                    Vehicle truck = new Truck(truckBrand, truckModel);
+                    String truckModel = scanner.next();
+                    scanner.nextLine(); 
+                    Truck truck = new Truck(truckBrand, truckModel);
                     truck.start();
                     truck.stop();
                     truck.vehicleInfo();
-                    ((Truck) truck).showTruckDetails();
+                    truck.showTruckDetails();
                     break;
+                case 4:
+                    System.out.println("Exiting program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
             }
-            System.out.println("Do you want to continue ? (1/0)");
-            c = scanner.nextInt();
-        } while (c == 1);
+        } while (choice != 4);
+
         scanner.close();
     }
 }
