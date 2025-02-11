@@ -1,9 +1,7 @@
 import java.util.Scanner;
-
 abstract class Vehicle {
     String brand;
     String model;
-
     public Vehicle(String brand, String model) {
         this.brand = brand;
         this.model = model;
@@ -12,7 +10,7 @@ abstract class Vehicle {
     public abstract void start();
     public abstract void stop();
     public final void vehicleInfo() {
-        System.out.println("Vehicle of: Brand - " + this.brand + ", Model - " + this.model);
+        System.out.println("Vehicle of: Brand - " + this.brand + ", Model - "+this.model);
     }
 }
 class Car extends Vehicle {
@@ -28,7 +26,7 @@ class Car extends Vehicle {
         System.out.println("Car stopped.");
     }
     public void showCarDetails() {
-        System.out.println("Car Details: Brand - " + this.brand + ", Model - " + this.model);
+        System.out.println("Car Details: Brand - "+this.brand + ", Model : "+this.model);
     }
 }
 class Bike extends Vehicle {
