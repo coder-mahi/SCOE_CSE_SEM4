@@ -1,11 +1,11 @@
 import java.util.Scanner;
 abstract class Vehicle {
-    String brand;
+     String brand;
     String model;
     public Vehicle(String brand, String model) {
         this.brand = brand;
         this.model = model;
-        System.out.println("Vehicle created: Brand - " + brand + ", Model - " + model);
+        System.out.println("Vehicle created: Brand - "+brand+", Model - " +model);
     }
     public abstract void start();
     public abstract void stop();
@@ -30,8 +30,8 @@ class Car extends Vehicle {
     }
 }
 class Bike extends Vehicle {
-    public Bike(String brand, String model) {
-        super(brand, model);
+    public Bike(String brand,String model) {
+        super(brand,model);
     }
     @Override
     public void start() {
@@ -66,13 +66,13 @@ public class Assignment2 {
         Scanner scanner = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("\nSelect Vehicle Type:\n1. Car\n2. Bike\n3. Truck\n4. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("\nSelect Vehicle Type :\n1.Car\n2.Bike\n3. Truck\n4. Exit");
+            System.out.print("Enter your choice:");
             choice = scanner.nextInt();
             scanner.nextLine();  
             switch (choice) {
                 case 1:
-                    System.out.print("Enter Car Brand: ");
+                    System.out.print("Enter Car Brand :");
                     String carBrand = scanner.next();
                     scanner.nextLine(); 
                     System.out.print("Enter Car Model: ");
@@ -84,7 +84,6 @@ public class Assignment2 {
                     car.vehicleInfo();
                     car.showCarDetails();
                     break;
-
                 case 2:
                     System.out.print("Enter Bike Brand: ");
                     String bikeBrand = scanner.next();
