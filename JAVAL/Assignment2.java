@@ -19,7 +19,7 @@ class Car extends Vehicle {
     }
     @Override
     public void start() {
-        System.out.println(this.brand + " Car started.");
+        System.out.println(this.brand+" Car started.");
     }
     @Override
     public void stop() {
