@@ -30,11 +30,9 @@ class DAOImplementation implements DAO{
             arr[i] = sc.nextInt();
             total = total + arr[i];
         }
-
         if(total>max1){
             return -1;
         }
-
         return total;
     }
     public void getObtainedMarkks(){
