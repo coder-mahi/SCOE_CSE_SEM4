@@ -1,33 +1,24 @@
+//BST using recursive approach
 #include <iostream>
 using namespace std;
-
-// Node structure for the BST
-struct Node {
+struct TreeNode {
     int data;
-    Node* left;
-    Node* right;
-
-    // Constructor
-    Node(int value) {
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int value) {
         data = value;
         left = right = nullptr;
     }
 };
-
-// BST Class
 class BST {
 public:
-    Node* root;
-
-    // Constructor
+    TreeNode* root;
     BST() {
         root = nullptr;
     }
-
-    // Insert function
-    Node* insert(Node* root, int value) {
+    TreeNode* insert(TreeNode* root, int value) {
         if (root == nullptr) {
-            return new Node(value);
+            return new TreeNode(value);
         }
         if (value < root->data) {
             root->left = insert(root->left, value);
@@ -36,9 +27,7 @@ public:
         }
         return root;
     }
-
-    // Search function
-    bool search(Node* root, int key) {
+    bool search(TreeNode* root, int key) {
         if (root == nullptr) {
             return false;
         }
@@ -50,9 +39,7 @@ public:
         }
         return search(root->right, key);
     }
-
-    // Inorder Traversal (Left -> Root -> Right)
-    void inorder(Node* root) {
+    void inorder(TreeNode* root) {
         if (root != nullptr) {
             inorder(root->left);
             cout << root->data << " ";
@@ -60,27 +47,22 @@ public:
         }
     }
 };
-
-// Main Function
 int main() {
     BST tree;
     int choice, value;
-
     do {
         cout << "\nBinary Search Tree Menu:\n";
         cout << "1. Insert\n2. Search\n3. Inorder Traversal\n4. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-
         switch (choice) {
-            case 1: // Insert
+            case 1: 
                 cout << "Enter value to insert: ";
                 cin >> value;
                 tree.root = tree.insert(tree.root, value);
                 cout << value << " inserted successfully!\n";
                 break;
-
-            case 2: // Search
+            case 2: 
                 cout << "Enter value to search: ";
                 cin >> value;
                 if (tree.search(tree.root, value)) {
@@ -89,21 +71,17 @@ int main() {
                     cout << value << " not found in BST.\n";
                 }
                 break;
-
-            case 3: // Inorder Traversal
+            case 3:
                 cout << "BST (Inorder Traversal): ";
                 tree.inorder(tree.root);
                 cout << endl;
                 break;
-
-            case 4: // Exit
+            case 4: 
                 cout << "Exiting...\n";
                 break;
-
             default:
                 cout << "Invalid choice! Try again.\n";
         }
     } while (choice != 4);
-
     return 0;
 }
