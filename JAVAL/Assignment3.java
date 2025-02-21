@@ -56,17 +56,14 @@ class DAOImplementation implements DAO{
     }
     @Override
 public void calculateYear1(){
-        // firstYear obj = new DAOImplementation();
         p1 = (o1/max1)*100;
     }
     @Override
     public void calculateYear2(){
-        // secondYear obj = new DAOImplementation();
         p2 = (o2/max2)*100;
     }
     @Override
     public void calculateYear3(){
-        // thirdYear obj = new DAOImplementation();
         p3 = (o3/max3)*100;
     }
     public float showAggregate(){
