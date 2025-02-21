@@ -1,9 +1,9 @@
 import com.packagexyz.DB;
 import java.util.*;
-public class Assignment4 extends DB{
+public class Assignment4{
     void accept(){
-        System.out.println("Enter college details..");
-
+        System.out.println("Enter college details..\n1. code\nname ofthe college\n3. no of students placed");
+        
 
     }
     void display(){
