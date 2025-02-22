@@ -1,5 +1,5 @@
-//operations on BST given by sir
-/* create 
+/* operations on BST--
+create 
 search 
 update 
 display 
@@ -7,7 +7,7 @@ minimum salary
 maximum salary 
 find avg sal
 total no. of employees
-delete employee*/
+delete employee */
 #include<iostream>
 using namespace std;
 struct TreeNode{
@@ -20,48 +20,57 @@ struct TreeNode{
         right = nullptr;
     }
 }*root;
+int n;
 void create(TreeNode* root1){
-    int n,x;
+    int x;
     if(root1==nullptr){
-        cout<<"Enter no. of employees :"<<endl;
+        cout<<"Enter no. of employees you want to insert:"<<endl;
         cin>>n;
         for(int i=0;i<n;i++){
             cin>>x;
-            insert(root1,x);
+            TreeNode* newNode = new TreeNode(x);
+            insert(root1,newNode);
+            cout<<" ->inserted successfully";
         }
     }else{
         cout<<"Employees already inserted by you.."<<endl;
     }
 }
-void insert(TreeNode* root1,int x){
-    TreeNode* newNode = new TreeNode(x);
-    if(root1!=nullptr){
-        
+void insert(TreeNode* root1,TreeNode* newNode){
+    if(root1 == nullptr){
+        root1 = newNode;
+        return;
+    }else{
+        if(newNode->data < root1->data){
+            insert(root1->left,newNode);
+        }else{
+            insert(root1->right,newNode);
+        }
     }
 }
-void update(TreeNode* root1){
-
+void update(TreeNode* root1,int emp){
+//remaining
 }
 void search(TreeNode* root1){
-
+//remaining
 }
 void display(TreeNode* root1){
-
+//remaining
 }
 void minSalary(TreeNode* root1){
-
+//remaining
 }
 void maxSalary(TreeNode* root1){
-
+//remaining
 }
 void findAvgSalary(TreeNode* root1){
-
+//remaining
 }
 void totalEmployees(TreeNode* root1){
-
+//remaining
 }
 void deleteEmployees(TreeNode* root1){
-
+//remaining
 }
 int main(){
     int ch,c;
@@ -75,6 +84,7 @@ int main(){
                 create(root);
                 break;
             case 2:
+                cout<<""<<endl;
                 search(root);
                 break;
             case 3:
