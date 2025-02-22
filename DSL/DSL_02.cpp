@@ -48,7 +48,7 @@ void insert(TreeNode* root1,TreeNode* newNode){
         }
     }
 }
-void update(TreeNode* root1,int emp){
+void update(TreeNode* root1){
 //remaining
 }
 void search(TreeNode* root1){
