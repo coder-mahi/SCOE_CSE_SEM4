@@ -23,11 +23,11 @@ struct TreeNode{
 int n;
 int avg;
 void insert(TreeNode*& root1, TreeNode* newNode){
-    if(root1 == nullptr){
+    if(root1==nullptr){
         root1 = newNode;
         return;
     }
-    if(newNode->data < root1->data){
+    if(newNode->data<root1->data){
         insert(root1->left,newNode);
     }else{
         insert(root1->right,newNode);
@@ -127,23 +127,23 @@ int totalEmployees(TreeNode* root1){
     return 1+max(totalEmployees(root1->left),totalEmployees(root1->right));
 }
 
-TreeNode* deleteEmployees(TreeNode* root1, int x) {
-    if (root1 == nullptr) return root1;
+TreeNode* deleteEmployees(TreeNode* root1, int x){
+    if(root1 == nullptr) return root1;
 
-    if (x<root1->data) {
+    if(x<root1->data) {
         root1->left = deleteEmployees(root1->left,x);
     }else 
-        if(x>root1->data) {
+    if(x>root1->data) {
         root1->right = deleteEmployees(root1->right,x);
     }else{
-        if(root1->left==nullptr && root1->right==nullptr) {    //leaf nodee
+        if(root1->left==nullptr && root1->right==nullptr){    //leaf nodee
             delete root1;
             return nullptr;
-        }else if(root1->left==nullptr) {     //having only left child
+        }else if(root1->left==nullptr){     //having only left child
             TreeNode* temp = root1->right;
             delete root1;
             return temp;
-        } else if (root1->right == nullptr) { //right
+        } else if(root1->right == nullptr){ //right
             TreeNode* temp = root1->left;
             delete root1;
             return temp;
@@ -160,20 +160,22 @@ TreeNode* deleteEmployees(TreeNode* root1, int x) {
 }
 
 void findJuniorEmployees(TreeNode* root1,int x) {
-    if (root1==nullptr) return;
-    if (x > root1->data) {  
-        cout<<root1->data<<" "; 
+    if(root1==nullptr) {
+        return;
+    }
+    if(x>root1->data){  
+          cout<<root1->data<<" "; 
          findJuniorEmployees(root1->right,x);
     }
     findJuniorEmployees(root1->left,x);
 }
 
 void findseniorEmployees(TreeNode* root1, int x) {
-    if (root1 == nullptr) return;
-    if (x < root1->data) {  
+    if(root1 == nullptr) return;
+    if(x < root1->data) {  
         display(root1); 
         findseniorEmployees(root1->left, x);
-    } else {
+    }else {
         findseniorEmployees(root1->right, x);
     }
 }
