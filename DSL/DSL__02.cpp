@@ -1,3 +1,13 @@
+/* operations on BST-->
+create 
+search 
+update 
+display 
+minimum salary 
+maximum salary 
+find avg sal
+total no. of employees
+delete employee */
 #include<iostream>
 #include<string>
 using namespace std;

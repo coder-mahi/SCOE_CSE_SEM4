@@ -50,6 +50,37 @@ void create(TreeNode*& root1){
     }
 }
 
+TreeNode* deleteEmployees(TreeNode* root1, int x)
+{
+    if(root1 == nullptr) return root1;
+    if(x<root1->data) {
+        root1->left = deleteEmployees(root1->left,x);
+    }else 
+    if(x>root1->data) {
+        root1->right = deleteEmployees(root1->right,x);
+    }else{
+        if(root1->left==nullptr && root1->right==nullptr){    //leaf nodee
+            delete root1;
+            return nullptr;
+        }else if(root1->left==nullptr){     //having only left child
+            TreeNode* temp = root1->right;
+            delete root1;
+            return temp;
+        } else if(root1->right == nullptr){ //right
+            TreeNode* temp = root1->left;
+            delete root1;
+            return temp;
+        }else{
+            TreeNode* temp2 = root1->right; //both
+            while(temp2->left){
+                temp2=temp2->left;
+            }
+            root1->data =temp2->data;
+            root1->right = deleteEmployees(root1->right,temp2->data);
+        }
+    }
+    return root1;
+}
 
 void update(TreeNode* root1,int x,int y){
     if(root1==nullptr) {
@@ -57,7 +88,9 @@ void update(TreeNode* root1,int x,int y){
         return;
     }else{
         if(x==root1->data){
-            root1->data = y;
+             TreeNode* temp = root1;
+            root1 = deleteEmployees(temp,x); 
+            insert(root1,new TreeNode(y));
             return;
         }
         if(x<root1->data){
@@ -132,38 +165,6 @@ int totalEmployees(TreeNode* root1)
         return 0;
     }
     return 1+ totalEmployees(root1->left) +totalEmployees(root1->right);
-}
-
-TreeNode* deleteEmployees(TreeNode* root1, int x)
-{
-    if(root1 == nullptr) return root1;
-    if(x<root1->data) {
-        root1->left = deleteEmployees(root1->left,x);
-    }else 
-    if(x>root1->data) {
-        root1->right = deleteEmployees(root1->right,x);
-    }else{
-        if(root1->left==nullptr && root1->right==nullptr){    //leaf nodee
-            delete root1;
-            return nullptr;
-        }else if(root1->left==nullptr){     //having only left child
-            TreeNode* temp = root1->right;
-            delete root1;
-            return temp;
-        } else if(root1->right == nullptr){ //right
-            TreeNode* temp = root1->left;
-            delete root1;
-            return temp;
-        }else{
-            TreeNode* temp2 = root1->right; //both
-            while(temp2->left){
-                temp2=temp2->left;
-            }
-            root1->data =temp2->data;
-            root1->right = deleteEmployees(root1->right,temp2->data);
-        }
-    }
-    return root1;
 }
 
 void findJuniorEmployees(TreeNode* root1,int x)
