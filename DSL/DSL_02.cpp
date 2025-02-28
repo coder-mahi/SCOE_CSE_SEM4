@@ -9,196 +9,193 @@ find avg sal
 total no. of employees
 delete employee */
 #include<iostream>
+#include<string>
 using namespace std;
 struct TreeNode{
-    int data;
+    int id;
+    string name;
+    int sal;
     TreeNode* left;
     TreeNode* right;
-    TreeNode(int val){
-        data = val;
+    TreeNode(int id,string name,int sal){
+        this->id = id;
+        this->name = name;
+        this->sal = sal;
         left = nullptr;
         right = nullptr;
     }
 }*root;
-int n;
-int avg;
-void insert(TreeNode*& root1, TreeNode* newNode){
-    if(root1==nullptr){
-        root1 = newNode;
+void insert(TreeNode*& root,TreeNode* newNode){
+    if(root==nullptr){
+        root=newNode;
         return;
-    }
-    if(newNode->data<root1->data){
-        insert(root1->left,newNode);
     }else{
-        insert(root1->right,newNode);
-    }
-}
-
-void create(TreeNode*& root1){
-    int x;
-    if(root1==nullptr){
-        cout<<"Enter no. of employees you want to insert:"<<endl;
-        cin>>n;
-        for(int i=0;i<n;i++){
-            cin>>x;
-            TreeNode* newNode = new TreeNode(x);
-            insert(root1,newNode);
-            cout<<" ->inserted successfullyy";
+        if(newNode->id < root->id){
+            insert(root->left,newNode);
+        }else{
+            insert(root->right,newNode);
         }
-    }else{
-        cout<<"Employees already inserted by you.."<<endl;
     }
 }
-
-TreeNode* deleteEmployees(TreeNode* root1, int x)
-{
-    if(root1 == nullptr) return root1;
-    if(x<root1->data) {
-        root1->left = deleteEmployees(root1->left,x);
-    }else 
-    if(x>root1->data) {
-        root1->right = deleteEmployees(root1->right,x);
-    }else{
-        if(root1->left==nullptr && root1->right==nullptr){    //leaf nodee
-            delete root1;
+void create(TreeNode*& root){
+    int id;
+    string name;
+    int sal;
+    cout<<"Enter ID,Name,Salary of emp -> "<<endl;
+    cin>>id;
+    cin>>name;
+    cin>>sal;
+    TreeNode* temp= new TreeNode(id,name,sal);
+    insert(root,temp);
+}
+void display(TreeNode* root){
+    if(root==nullptr) return;
+    display(root->left);
+    cout<<"ID : "<<root->id<<", Name : "<<root->name<<", Salary : "<<root->sal<<"\n"<<endl;
+    display(root->right);
+}
+TreeNode* deleteNode(TreeNode*& root,int id){
+    if(root==nullptr) return root;
+    if(id < root->id){
+        root->left = deleteNode(root->left,id);
+    }else if(id > root->id){
+        root->right = deleteNode(root->right,id);
+    }else{ //equal to ID
+        if(root->left == nullptr && root->right == nullptr){//leaf
+            delete root;
             return nullptr;
-        }else if(root1->left==nullptr){     //having only left child
-            TreeNode* temp = root1->right;
-            delete root1;
+        }else if(root->left == nullptr){ //one child right
+            TreeNode* temp = root->right;
+            delete root;
             return temp;
-        } else if(root1->right == nullptr){ //right
-            TreeNode* temp = root1->left;
-            delete root1;
+        }else if(root->right == nullptr){ //one child right
+            TreeNode* temp = root->left;
+            delete root;
             return temp;
-        }else{
-            TreeNode* temp2 = root1->right; //both
-            while(temp2->left){
-                temp2=temp2->left;
+        }else{ //both childern present ---inorder succesor
+            TreeNode* temp = root->right;
+            while(temp->left){
+                temp = temp->left;
             }
-            root1->data =temp2->data;
-            root1->right = deleteEmployees(root1->right,temp2->data);
+            root->id = temp->id;
+            root->name = temp->name;
+            root->sal = temp->sal;
+
+            root->right = deleteNode(root->right,temp->id); //delete inorder succesor
         }
     }
-    return root1;
+    return root;
 }
 
-void update(TreeNode* root1,int x,int y){
-    if(root1==nullptr) {
-        cout<<"Node is NULL"<<endl;
+
+void update(TreeNode*& root, int id, TreeNode* newNode) {
+    if(root==nullptr){
         return;
-    }else{
-        if(x==root1->data){
-             TreeNode* temp = root1;
-            root1 = deleteEmployees(temp,x); 
-            insert(root1,new TreeNode(y));
-            return;
+    }
+    if(id==root->id) {
+        root=deleteNode(root,id);  
+        if(newNode){
+            insert(root,newNode);
         }
-        if(x<root1->data){
-            update(root1->left,x,y);
-        }else{
-            update(root1->right,x,y);
-        }
+        return;
+    } 
+    else if(id<root->id) {
+        update(root->left,id,newNode);
+    } 
+    else {
+        update(root->right,id,newNode);
     }
 }
 
-void search(TreeNode* root1, int x){
-    if(root1 == nullptr){
-        cout<<"Not found..."<<endl;
+void search(TreeNode* root, int x){
+    if(root == nullptr){
+        cout<<"Employee data Not found..."<<endl;
         return;
     }
-    if(x==root1->data){
-        cout<<"Data found.."<<endl;
+    if(x==root->id){
+        cout<<"Employee Data found.."<<endl;
         return;
     }
-    if(x<root1->data){
-        search(root1->left,x);
+    if(x<root->id){
+        search(root->left,x);
     }else{
-        search(root1->right,x);
-    }
-}
-
-void display(TreeNode* root1)
-{
-    if(root1==nullptr){
-        return;
-    }else{
-        display(root1->left);
-         cout<<root1->data<<" ";
-        display(root1->right);
+        search(root->right,x);
     }
 }
 
 
-TreeNode* minSalary(TreeNode* root1)
+int minSalary(TreeNode* root)
 {
-    if(root1==nullptr) return nullptr;
-
-    while(root1->left != nullptr){
-        root1 = root1->left;  
+    if(root==nullptr){
+        cout<<"Tree is emptty"<<endl;
+        return -1;
     }
-    return root1;
+    int minSal;
+    if(root->left) minSal = min(minSal,minSalary(root->left));
+    if(root->right) minSal = min(minSal,minSalary(root->right));
+    return minSal;
 }
 
-TreeNode* maxSalary(TreeNode* root1)
+int maxSalary(TreeNode* root)
 {
-    if(root1 == nullptr) return nullptr;
-    while(root1->right != nullptr){
-        root1 = root1->right;
+    if(root==nullptr){
+        cout<<"Tree is emptty"<<endl;
+        return -1;
     }
-    return root1;
+    int maxSal;
+    if(root->left) maxSal = max(maxSal,maxSalary(root->left));
+    if(root->right) maxSal = max(maxSal,maxSalary(root->right));
+    return maxSal;
 }
 
-void findAvgSalary(TreeNode* root1, int& count, int& total)
-{
-    if(root1==nullptr){
+void findAvgSalary(TreeNode* root, int& count, int& total){
+    if(root==nullptr){
         return;
     }
-    findAvgSalary(root1->left,count,total);
-    total  = total+root1->data;
-    count++;
-    findAvgSalary(root1->right, count, total);
+        findAvgSalary(root->left,count,total);
+        total = total+root->sal;
+        count++;
+        findAvgSalary(root->right, count, total);
 }
 
-int totalEmployees(TreeNode* root1) 
+int totalEmployees(TreeNode* root) 
 {
-    if(root1==nullptr){
+    if(root==nullptr){
         return 0;
     }
-    return 1+ totalEmployees(root1->left) +totalEmployees(root1->right);
+    return 1+totalEmployees(root->left) +totalEmployees(root->right);
 }
 
-void findJuniorEmployees(TreeNode* root1,int x)
+void findJuniorEmployees(TreeNode* root,int x)
 {
-    if(root1==nullptr){
-        return;
+    if(root==nullptr) return;
+    if(x>root->id){  
+        display(root); 
+         findJuniorEmployees(root->right,x);
     }
-    if(x>root1->data){  
-          cout<<root1->data<<" "; 
-         findJuniorEmployees(root1->right,x);
-    }
-    findJuniorEmployees(root1->left,x);
+    findJuniorEmployees(root->left,x);
 }
 
 
-void findseniorEmployees(TreeNode* root1, int x)
+void findseniorEmployees(TreeNode* root, int x)
 {
-    if(root1 == nullptr) return;
-    if(x<root1->data) {  
-        display(root1); 
-        findseniorEmployees(root1->left,x);
+    if(root == nullptr) return;
+    if(x<root->id) {  
+        display(root); 
+        findseniorEmployees(root->left,x);
     }else {
-        findseniorEmployees(root1->right,x);
+        findseniorEmployees(root->right,x);
     }
 }
 
 
-int main(){
-    int ch,c;
-    int count=0, total=0;
-    int x,y,sal;
-    root = nullptr;
-    TreeNode* min =nullptr;
-    TreeNode* max =nullptr;
+int main() {
+    root=nullptr;
+    int id,newId,sal;
+    string name;
+    int ch,c,x;
+    TreeNode* temp;
+    int count,total;
     do{
         cout<<"Select operation on BST -> "<<endl;
         cout<<"1.create\n2.search\n3.update\n4.display\n5.minimum salary\n6.maximum salary\n7.find avg salary\n8.total no. of employee\n9.delete employee\n10.find junniors\n11.find seniors"<<endl;
@@ -208,71 +205,60 @@ int main(){
                 create(root);
                 break;
             case 2:
-                cout<<"Enter search value :"<<endl;
+                cout<<"Enter id of emp to search :> "<<endl;
                 cin>>x;
-                 search(root,x);
+                search(root,x);
                 break;
             case 3:
-                 cout<<"Enter value to update : "<<endl;
-                cin>>x;
-                cout<<"Enter new Value : "<<endl;
-                cin>>y;
-                update(root,x,y);
+                cout<<"Enter id of emp whose details want to update ..."<<endl;
+                cin>>id;
+                cout<<"Enter updated id, name, salary :> "<<endl;
+                cin>>newId; 
+                cin>>name;
+                cin>>sal;
+                temp = new TreeNode(newId,name,sal);
+                update(root,id,temp);
                 break;
             case 4:
                 display(root);
                 break;
             case 5:
-                min =minSalary(root);
-                if(min!=nullptr){
-                    cout<<"Min sal :> "<<min->data<<endl;
-                }else{
-                    cout<<"tree is empty!!"<<endl;
-                }
+                cout<<"\nMinimum salary :> "<<minSalary(root)<<endl;
                 break;
-            case 6:                
-                max=maxSalary(root);
-                if(max!=nullptr){
-                    cout<<"max sal :>"<<max->data<<endl;
-                }else{
-                    cout<<"tree is empty!!!"<<endl;
-                }
+            case 6:
+                cout<<"\nMaximum salary :> "<<maxSalary(root)<<endl;
                 break;
-                
             case 7:
                 count =0;
                 total =0;
                 findAvgSalary(root,count,total);
-                if(count >0){
+                if(count>0){
                     cout<<"avg salarry :>"<<(total/count)<<endl;
                 }else{
                     cout<<"No employees found..!!!"<<endl;
-            }
+                }
                 break;
             case 8:
-                cout<<"no of employees :>"<<totalEmployees(root)<<endl;
+                cout<<"\nTOTAL EMP :> "<<totalEmployees(root);
                 break;
             case 9:
-                cout<<"Enter employee salary to delete :> "<<endl;
-                cin>>x;
-                    root = deleteEmployees(root,x);
+                cout<<"enter ID :> "<<endl;
+                cin>>id;
+                deleteNode(root,id);
                 break;
             case 10:
-                cout<<"Enter salary whose juniors you want to find ?"<<endl;
-                cin>>sal;
-                findJuniorEmployees(root,sal);
+                cout<<"enter ID :> "<<endl;
+                cin>>id;
+                findJuniorEmployees(root,id);
                 break;
             case 11:
-                cout<<"Enter salary whose seniors you want to find ? "<<endl;
-                cin>>sal;
-                findseniorEmployees(root,sal);
+                cout<<"enter ID :> "<<endl;
+                cin>>id;
+                findseniorEmployees(root,id);
                 break;
-            default:
-                cout<<"invalid choice selected..."<<endl;
         }
-        cout<<"Do you want to continue??"<<endl;
+        cout<<"Do you want to continue ?"<<endl;
         cin>>c;
     }while(c==1);
     return 0;
 }
-
