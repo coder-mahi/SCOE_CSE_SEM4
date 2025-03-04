@@ -1,5 +1,5 @@
 import java.util.*;
-import main.p3.DB;
+import main.p3.*;
 public class Assignment4 extends DB{
     public void accept() {
         Scanner sc = new Scanner(System.in);
