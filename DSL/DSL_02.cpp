@@ -131,8 +131,13 @@ int minSalary(TreeNode* root)
         return -1;
     }
     int minSal;
-    if(root->left) minSal = min(minSal,minSalary(root->left));
-    if(root->right) minSal = min(minSal,minSalary(root->right));
+    if(root->left) {
+        minSal = min(minSal,minSalary(root->left));
+    }
+    
+    if(root->right){
+        minSal = min(minSal,minSalary(root->right));
+    }
     return minSal;
 }
 
