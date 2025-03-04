@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 import main.p3.DB;
 public class Assignment4 extends DB{
     public void accept() {
@@ -8,31 +8,46 @@ public class Assignment4 extends DB{
         System.out.print("Enter roll number: ");
         setStudRoll(sc.nextInt());
         sc.nextLine(); 
+
         System.out.print("Enter faculty name: ");
         setFacultyName(sc.nextLine());
-        System.out.print("Enter faculty ID: ");
+        System.out.print("Enter faculty Id:");
         setFacultyID(sc.nextInt());
         sc.nextLine();
-        System.out.print("Enter college code: ");
+
+        System.out.print("Enter clg code :");
         setCode(sc.nextInt());
         sc.nextLine(); 
-        System.out.print("Enter college name: ");
+        System.out.print("Enter clg name: ");
         setClgName(sc.nextLine());
+       
+        System.out.print("Is "+getStudName()+" student placed ?");
+        setPlacedOrNot(sc.nextBoolean());
+
         System.out.print("Enter number of placed students: ");
         setPlacementRecords(sc.nextInt());
     }
     
     public void display() {
-        System.out.println("Student Name: "+getStudName());
-        System.out.println("Roll Number: "+getRollNo());
-        System.out.println("Faculty Name: "+getFacultyName());
-        System.out.println("Faculty ID: "+getFacultyID());
-        System.out.println("College Code: "+getCode());
-        System.out.println("College Name: "+getClgName());
-        System.out.println("Placed Students: "+getPlacementRecord());
+        System.out.println("Student name:"+getStudName());
+        System.out.println("Roll number: "+getRollNo());
+
+        System.out.println("Faculty Name:"+getFacultyName());
+
+        System.out.println("Faculty id "+getFacultyID());
+        
+        System.out.println("College code:"+getCode());
+        System.out.println("College name:"+getClgName());
+
+        System.out.println("Is "+getStudName()+" is placed : "+getPlacedOrNot());
+
+        System.out.println("Placed Students : "+getPlacementRecord());
     }
+
     public static void main(String[] args){
-        int ch,c;
+        int ch;
+        int c;
+
         Scanner sc=new Scanner(System.in);
         Assignment4 obj = new Assignment4();
         do{
@@ -47,12 +62,11 @@ public class Assignment4 extends DB{
                 case 2:
                     obj.display();
                     break;
-                
                 default:
-                    System.out.println("invalid option...");
+                    System.out.println("invalid optionn...");
             }
-            System.out.println("do you want to contiiinue?");
-            c = sc.nextInt();
-        } while (c == 1);
-    }
+            System.out.println("do you want to contiiinue........");
+            c=sc.nextInt();
+        } while(c==1);
+        }
 }
