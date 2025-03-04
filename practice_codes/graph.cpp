@@ -9,30 +9,33 @@ struct Node
 struct Graph
 {
     int V;
-    Node** adjList; 
-    Graph(int V) {
-        this->V = V;
+    Node** adjList;
+    Graph(int V)
+    {
+        this->V = V; //no of vertices
         adjList = new Node*[V];  
-        for (int i = 0; i < V; i++)
-            adjList[i] = nullptr; 
+        for(int i=0; i<V;i++)
+            adjList[i] =nullptr; 
     }
 
-    void addEdge(int u, int v) {
-        Node* newNode = new Node{v, adjList[u]};
+    void addEdge(int u,int v)
+    {
+        Node* newNode =new Node{v,adjList[u]};
         adjList[u] = newNode;
-        newNode = new Node{u, adjList[v]};
-        adjList[v] = newNode;
+        newNode =new Node{u,adjList[v]};
+        adjList[v] =newNode;
     }
 
-    void printGraph() {
-        for (int i = 0; i < V; i++) {
-            cout << "Vertex " << i << " -> ";
-            Node* temp = adjList[i];
-            while (temp) {
-                cout << temp->vertex << " ";
-                temp = temp->next;
+    void printGraph()
+    {
+        for(int i = 0; i < V; i++) {
+            cout<<"Vertex "<<i<<" ->";
+            Node* temp= adjList[i];
+            while(temp){
+                cout<<temp->vertex<<" ";
+                temp=temp->next;
             }
-            cout << endl;
+            cout<<endl;
         }
     }
 };
