@@ -30,7 +30,7 @@ void insert(TreeNode*& root,TreeNode* newNode){
         root=newNode;
         return;
     }else{
-        if(newNode->id < root->id){
+        if(newNode->id<root->id){
             insert(root->left,newNode);
         }else{
             insert(root->right,newNode);
@@ -51,28 +51,32 @@ void create(TreeNode*& root){
 void display(TreeNode* root){
     if(root==nullptr) return;
     display(root->left);
-    cout<<"ID : "<<root->id<<", Name : "<<root->name<<", Salary : "<<root->sal<<"\n"<<endl;
+    cout<<"ID : "<<root->id<<", Name : "<<root->name<<", Salary : 1"<<root->sal<<"\n"<<endl;
     display(root->right);
 }
 TreeNode* deleteNode(TreeNode*& root,int id){
-    if(root==nullptr) return root;
-    if(id < root->id){
+    if(root==nullptr) {
+        return root;
+    }
+    if(id<root->id){
         root->left = deleteNode(root->left,id);
     }else if(id > root->id){
         root->right = deleteNode(root->right,id);
-    }else{ //equal to ID
-        if(root->left == nullptr && root->right == nullptr){//leaf
+    }else{ 
+        
+        if(root->left == nullptr&&root->right==nullptr)
+        {
             delete root;
             return nullptr;
-        }else if(root->left == nullptr){ //one child right
+        }else if(root->left == nullptr){ 
             TreeNode* temp = root->right;
             delete root;
             return temp;
-        }else if(root->right == nullptr){ //one child right
+        }else if(root->right == nullptr){ 
             TreeNode* temp = root->left;
             delete root;
             return temp;
-        }else{ //both childern present ---inorder succesor
+        }else{ 
             TreeNode* temp = root->right;
             while(temp->left){
                 temp = temp->left;
@@ -81,7 +85,7 @@ TreeNode* deleteNode(TreeNode*& root,int id){
             root->name = temp->name;
             root->sal = temp->sal;
 
-            root->right = deleteNode(root->right,temp->id); //delete inorder succesor
+            root->right = deleteNode(root->right,temp->id); //delete inorder sucessorr
         }
     }
     return root;
@@ -107,7 +111,7 @@ void update(TreeNode*& root, int id, TreeNode* newNode) {
     }
 }
 
-void search(TreeNode* root, int x){
+void search(TreeNode* root,int x){
     if(root == nullptr){
         cout<<"Employee data Not found..."<<endl;
         return;
@@ -122,7 +126,6 @@ void search(TreeNode* root, int x){
         search(root->right,x);
     }
 }
-
 
 int minSalary(TreeNode* root)
 {
@@ -184,7 +187,9 @@ void findJuniorEmployees(TreeNode* root,int x)
 
 void findseniorEmployees(TreeNode* root, int x)
 {
-    if(root == nullptr) return;
+    if(root==nullptr){
+        return;
+    }
     if(x<root->id) {  
         display(root); 
         findseniorEmployees(root->left,x);
