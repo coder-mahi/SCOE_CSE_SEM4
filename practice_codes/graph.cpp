@@ -9,7 +9,7 @@ struct Node
 struct Graph
 {
     int V;
-    Node** adjList;
+    Node** adjList; //array of pointer
     Graph(int V)
     {
         this->V = V; //no of vertices
@@ -31,7 +31,7 @@ struct Graph
         for(int i = 0; i < V; i++) {
             cout<<"Vertex "<<i<<" ->";
             Node* temp= adjList[i];
-            while(temp){
+            while(temp!=nullptr){
                 cout<<temp->vertex<<" ";
                 temp=temp->next;
             }
