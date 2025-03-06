@@ -9,20 +9,11 @@ Justify the storage representation used.
 #include <iostream>
 #include <string>
 using namespace std;
-
-// Node structure for adjacency list
-struct Node {
-    string dest; // Destination city name
-    int cost;    // Cost of the flight (time or fuel)
-    Node* next;  // Pointer to the next node
-};
-
 // Graph class
 class Graph {
 public:
     int v, e;
     int matrix[100][100]; // Adjacency matrix
-    Node* adjList[100];   // Adjacency list
     string cities[100];   // Array to store city names
 
     // Constructor
@@ -33,7 +24,6 @@ public:
             for (int j = 0; j < v; j++) {
                 matrix[i][j] = 0; // Initialize adjacency matrix
             }
-            adjList[i] = nullptr; // Initialize adjacency list
         }
     }
 
@@ -55,32 +45,17 @@ public:
         // Add edge to adjacency matrix
         matrix[srcIndex][destIndex] = cost;
         matrix[destIndex][srcIndex] = cost;
-
-        // Add edge to adjacency list
-        Node* newNode = new Node();
-        newNode->dest = dest;
-        newNode->cost = cost;
-        newNode->next = adjList[srcIndex];
-        adjList[srcIndex] = newNode;
-
-        newNode = new Node();
-        newNode->dest = src;
-        newNode->cost = cost;
-        newNode->next = adjList[destIndex];
-        adjList[destIndex] = newNode;
     }
 
-    // Function to get the index of a city
     int getCityIndex(string name) {
         for (int i = 0; i < v; i++) {
             if (cities[i] == name) {
                 return i;
             }
         }
-        return -1; // City not found
+        return -1;
     }
 
-    // Function to display adjacency matrix
     void displayMatrix() {
         cout << "Adjacency Matrix:" << endl;
         cout << "  ";
@@ -92,20 +67,6 @@ public:
             cout << cities[i] << " ";
             for (int j = 0; j < v; j++) {
                 cout << matrix[i][j] << " ";
-            }
-            cout << endl;
-        }
-    }
-
-    // Function to display adjacency list
-    void displayList() {
-        cout << "Adjacency List:" << endl;
-        for (int i = 0; i < v; i++) {
-            cout << "City " << cities[i] << " -> ";
-            Node* temp = adjList[i];
-            while (temp != nullptr) {
-                cout << "(" << temp->dest << ", " << temp->cost << ") ";
-                temp = temp->next;
             }
             cout << endl;
         }
@@ -142,9 +103,6 @@ int main() {
         g.addEdge(src, dest, cost);
     }
 
-    // Display adjacency matrix and list
     g.displayMatrix();
-    g.displayList();
-
     return 0;
 }
