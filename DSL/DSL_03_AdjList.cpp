@@ -13,7 +13,7 @@ struct Node{
 
 class Graph{
     public:
-
+    
     Node* arr[100];
     string cities[100];
     int vertices,edges;
