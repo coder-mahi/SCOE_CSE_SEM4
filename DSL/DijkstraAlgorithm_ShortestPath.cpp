@@ -37,11 +37,9 @@ void dijkstra(int graph[10][10], int V, int src) {
             }
         }
     }
-
     for (int i = 0; i < V; i++)
         cout << i << " " << dist[i] << endl;
 }
-
 int main() {
     int V, graph[10][10], src;
     
