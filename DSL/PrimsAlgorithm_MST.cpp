@@ -1,60 +1,62 @@
 #include <iostream>
+using namespace std;
 
-#define V 5  
-#define INF 99999  
+#define INF 9999999  
 
-void primMST(int graph[V][V]) {
-    int final[V];   // Stores selected vertices
-    int start[V];   // All vertices initially
-    int key[V];     // Store minimum weights
-    bool inFinal[V]; // Track vertices in final[]
+int minKey(int key[], bool inMST[], int V) {
+    int min = INF, minIndex = -1;
+    for (int v = 0; v < V; v++) {
+        if (!inMST[v] && key[v] < min) {
+            min = key[v];
+            minIndex = v;
+        }
+    }
+    return minIndex;
+}
 
-    // Initialize arrays
+void printMST(int parent[], int graph[10][10], int V) {
+    cout << "Edge\tWeight\n";
+    for (int i = 1; i < V; i++) {
+        cout << parent[i] << " - " << i << "\t" << graph[i][parent[i]] << endl;
+    }
+}
+
+void primMST(int graph[10][10], int V) {
+    int parent[10], key[10];  
+    bool inMST[10];  
+
     for (int i = 0; i < V; i++) {
         key[i] = INF;
-        inFinal[i] = false;
-        start[i] = i;
+        inMST[i] = false;
     }
 
-    key[0] = 0;  // Start from vertex 0
-    final[0] = -1;  
+    key[0] = 0;  
+    parent[0] = -1;  
 
-    for (int count = 0; count < V; count++) {
-        // Find the minimum key vertex not yet in final[]
-        int minKey = INF, u = -1;
-        for (int i = 0; i < V; i++) {
-            if (!inFinal[start[i]] && key[start[i]] < minKey) {
-                minKey = key[start[i]];
-                u = start[i];
-            }
-        }
+    for (int count = 0; count < V - 1; count++) {
+        int u = minKey(key, inMST, V);
+        inMST[u] = true;
 
-        inFinal[u] = true;  // Add vertex to final[]
-
-        // Update adjacent vertices in start[]
         for (int v = 0; v < V; v++) {
-            if (graph[u][v] && !inFinal[v] && graph[u][v] < key[v]) {
+            if (graph[u][v] && !inMST[v] && graph[u][v] < key[v]) {
+                parent[v] = u;
                 key[v] = graph[u][v];
-                final[v] = u;
             }
         }
     }
 
-    // Print MST
-    std::cout << "Edge \tWeight\n";
-    for (int i = 1; i < V; i++)
-        std::cout << final[i] << " - " << i << "\t" << graph[i][final[i]] << "\n";
+    printMST(parent, graph, V);
 }
 
 int main() {
-    int graph[V][V] = {
-        {0, 2, 0, 6, 0},
-        {2, 0, 3, 8, 5},
-        {0, 3, 0, 0, 7},
-        {6, 8, 0, 0, 9},
-        {0, 5, 7, 9, 0}};
+    int V, graph[10][10];
 
-    primMST(graph);
+    cin >> V;
+    for (int i = 0; i < V; i++) 
+        for (int j = 0; j < V; j++) 
+            cin >> graph[i][j];
+
+    primMST(graph, V);
 
     return 0;
 }
