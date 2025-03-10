@@ -1,47 +1,46 @@
 import user_defined_exception.AgeException;
 import user_defined_exception.InvalidInfoException;
 import java.io.*;
-
 class VoterDB {
     private int voterid;
     private String name;
     private int age;
 
-    public void setVoterID(int voterid) throws InvalidInfoException {
-        if (voterid <= 0) {
+    public void setVoterID(int voterid) throws InvalidInfoException{
+        if (voterid<=0){
             throw new InvalidInfoException("Invalid Voter ID");
         }
-        this.voterid = voterid;
+        this.voterid =voterid;
     }
 
-    public void setName(String name) throws InvalidInfoException {
-        if (name == null || name.isEmpty()) {
+    public void setName(String name) throws InvalidInfoException{
+        if(name==null ||name.isEmpty())
+        {
             throw new InvalidInfoException("Invalid Name");
         }
-        this.name = name;
+        this.name=name;
     }
 
-    public void setAge(int age) throws AgeException {
-        if (age < 18) {
+    public void setAge(int age) throws AgeException{
+        if(age<18){
             throw new AgeException(age);
         }
-        this.age = age;
+        this.age =age;
     }
-
-    public int getVoterID() {
+    public int getVoterID(){
         return voterid;
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public int getAge() {
+    public int getAge(){
         return age;
     }
 }
 
-public class Assignment5 {
+public class Assignment5{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         VoterDB voter = new VoterDB();
@@ -64,9 +63,11 @@ public class Assignment5 {
             System.out.println("Name: " + voter.getName());
             System.out.println("Age: " + voter.getAge());
 
-        } catch (InvalidInfoException | AgeException e) {
+        } 
+        catch(InvalidInfoException | AgeException e){
             System.out.println("Error: " + e.getMessage());
-        } catch (NumberFormatException e) {
+        } 
+        catch(NumberFormatException e){
             System.out.println("Error: Invalid input format");
         }
     }
