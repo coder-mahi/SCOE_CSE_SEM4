@@ -1,14 +1,15 @@
 package user_defined_exception;
 
 public class AgeException extends Exception{
-    private int age = 0;
+    private int age;
+
     public AgeException(int age){
-        System.out.println(showException());
         this.age = age;
+        System.out.println(showException());
     }
 
     public String showException(){
-        return "Age Exception :> "+age;
+        return "Age Exception Occurred :> "+age;
     }
 
 }

@@ -7,7 +7,7 @@ class VoterDB {
     private int age;
 
     public void setVoterID(int voterid) throws InvalidInfoException{
-        if (voterid<=0){
+        if(voterid<=0){
             throw new InvalidInfoException("Invalid Voter ID");
         }
         this.voterid =voterid;
@@ -64,11 +64,20 @@ public class Assignment5{
             System.out.println("Age: " + voter.getAge());
 
         } 
-        catch(InvalidInfoException | AgeException e){
-            System.out.println("Error: " + e.getMessage());
+        catch(InvalidInfoException e){
+            System.out.println(e.showException());
         } 
+
+        catch(AgeException e)
+        {
+            System.out.println(e.showException());
+        }
         catch(NumberFormatException e){
-            System.out.println("Error: Invalid input format");
+            e.printStackTrace();
+        }
+
+        finally{
+            System.out.println("program exceution completed...");
         }
     }
 }
