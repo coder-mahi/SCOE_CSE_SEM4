@@ -1,62 +1,55 @@
 #include <iostream>
 using namespace std;
 
-#define INF 9999999  
+void prim(int cost[][10], int v) {
+    int mincost = 0;
+    int edgeCount = 0;
+    bool visited[10] = {false};
+    visited[0] = true; // Start from the first vertex
 
-int minKey(int key[], bool inMST[], int V) {
-    int min = INF, minIndex = -1;
-    for(int v=0;v<V;v++){
-       if(!inMST[v] && key[v]<min){
-            min = key[v];
-            minIndex = v;
-        }
-    }
-    return minIndex;
-}
+    while (edgeCount < v - 1) {
+        int INF = 99;
+        int min = INF;
+        int x = -1;
+        int y = -1;
 
-void printMST(int parent[], int graph[10][10], int V) {
-    cout<<"Edge\tWeight\n";
-    for(int i = 1; i < V; i++){
-        cout<<parent[i]<<" - " <<i<<"\t"<<graph[i][parent[i]]<<endl;
-    }
-}
-
-void primMST(int graph[10][10], int V) {
-    int parent[10]; // final MST  
-    int key[10];    // cost of edges
-    bool inMST[10]; // check vertexx is visited or not
-
-    for(int i=0;i<V;i++){
-        key[i] =INF;
-        inMST[i]= false;
-    }
-
-    key[0] = 0;    
-    parent[0] = -1;  
-
-    for(int count=0;count<V-1;count++){
-       int u = minKey(key, inMST, V);
-        inMST[u] = true;
-
-        for(int v=0;v<V;v++){
-            if(graph[u][v] && !inMST[v] && graph[u][v]<key[v]){
-                parent[v] =u;
-                key[v] =graph[u][v];
+        for (int p = 0; p < v; p++) {
+            if (visited[p]) {
+                for (int q = 0; q < v; q++) {
+                    if (!visited[q] && cost[p][q] < min) {
+                        min = cost[p][q];
+                        x = p;
+                        y = q;
+                    }
+                }
             }
         }
+
+        if (x != -1 && y != -1) {
+            visited[y] = true;
+            cout << "Edge (" << x << ", " << y << ") with cost " << min << endl;
+            mincost += min;
+            edgeCount++;
+        }
     }
-    printMST(parent, graph, V);
+
+    cout << "Total cost of Minimum Spanning Tree: " << mincost << endl;
 }
 
 int main() {
-    int V, graph[10][10];
+    int v;
+    cout << "Enter the number of vertices: ";
+    cin >> v;
 
-    cin >> V;
-    for (int i = 0; i < V; i++) 
-        for (int j = 0; j < V; j++) 
-            cin >> graph[i][j];
+    int cost[10][10];
+    cout << "Enter the cost adjacency matrix:" << endl;
+    for (int p = 0; p < v; p++) {
+        for (int q = 0; q < v; q++) {
+            cin >> cost[p][q];
+        }
+    }
 
-    primMST(graph, V);
+    prim(cost, v);
 
     return 0;
 }
