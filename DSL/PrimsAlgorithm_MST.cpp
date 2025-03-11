@@ -5,7 +5,7 @@ void prim(int cost[][10], int v) {
     int mincost = 0;
     int edgeCount = 0;
     bool visited[10] ={false};
-    visited[0] =true; // Start from the first vertex
+    visited[0] =true; 
 
     while(edgeCount < v-1){
         int INF =99;
@@ -27,24 +27,24 @@ void prim(int cost[][10], int v) {
 
         if(x!=-1 && y!=-1)
         {
-            visited[y] = true;
-            cout<<"Edge (" <<x<<", "<<y<<") with cost " <<min<<endl;
+            visited[y] =true;
+            cout<<"edge(" <<x<<", "<<y<<") with weightt : "<<min<<endl;
             mincost = mincost +min;
             edgeCount++;
         }
     }
 
-    cout<<"Total cost of Minimum Spanning Tree: "<<mincost<<endl;
+    cout<<"Total cost of MST :>"<<mincost<<endl;
 }
 
 int main()
 {
     int v;
-    cout << "Enter the number of vertices: ";
-    cin >> v;
+    cout<<"Enter number of vertices: ";
+    cin>>v;
 
     int cost[10][10];
-    cout<<"Enter the cost adjacency matrix:"<<endl;
+    cout<<"Enter cost of adjacency matrix:"<<endl;
     for(int i=0; i<v; i++){
         for(int j=0; j<v; j++){
             cin>>cost[i][j];
