@@ -1,4 +1,3 @@
-import java.math.*;
 import java.util.*;
 public class binomialDistribution {
     public static void main(String[] args)
