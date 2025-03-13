@@ -1,26 +1,30 @@
 #include <iostream>
 using namespace std;
 
-void prims(int cost[][10], int v) {
-    int mincost = 0;
-    int edgeCount = 0;
+void prims(int cost[][10], int v) 
+{
+    int mincost =0;
+    int edgeCount =0;
+
     bool visited[10] ={false};
     visited[0] =true; 
 
-    while(edgeCount < v-1){
+    while(edgeCount <v-1)
+    {
         int infinity =99;
         int min = infinity;
 
         int x= -1;
         int y =-1;
 
-        for(int i=0; i<v; i++){
+        for(int i=0; i<v; i++)
+        {
             if(visited[i]){
                 for(int j =0; j<v; j++){
-                    if(!visited[j] && cost[i][j] <min){
+                    if(!visited[j] && cost[i][j]<min){
                         min =cost[i][j];
                         x =i;
-                        y= j;
+                        y=j;
                     }
                 }
             }
@@ -35,13 +39,13 @@ void prims(int cost[][10], int v) {
         }
     }
 
-    cout<<"Total cost of MST :>"<<mincost<<endl;
+    cout<<"Total weight of MST :>"<<mincost<<endl;
 }
 
 int main()
 {
     int v;
-    cout<<"Enter number of vertices: ";
+    cout<<"Enter number of verticess:";
     cin>>v;
 
     int cost[10][10]; 
