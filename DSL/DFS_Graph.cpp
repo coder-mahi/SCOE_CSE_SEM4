@@ -1,9 +1,18 @@
+/*
+Analysis of DFS
+Time Complexity:
+The time complexity of DFS is O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph.
+Each vertex and edge is visited once in the worst-case scenario.
+
+Space Complexity:
+The space complexity of DFS is O(V) for the recursive implementation and O(V + E) for the iterative implementation using a stack.
+The space required is proportional to the maximum depth of the recursion stack or the maximum size of the stack.
+*/
+
 #include <iostream>
 #include <vector>
 #include <stack>
-
 using namespace std;
-
 // Function to perform DFS
 void dfs(int node, vector<bool>& visited, vector<vector<int>>& adjList) {
     // Mark the current node as visited
