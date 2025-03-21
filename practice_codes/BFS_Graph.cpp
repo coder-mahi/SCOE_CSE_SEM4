@@ -1,72 +1,48 @@
 #include <iostream>
-#include <list>
-#include <queue>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
-class GraphBFS {
-    int NOV; // Number of vertices
-    list<int>* adj; // Adjacency list
+// Function to perform BFS
+void bfs(int start, vector<bool>& visited, vector<vector<int>>& adjList) {
+    queue<int> q;
+    q.push(start);
+    visited[start] = true;
 
-public:
-    GraphBFS(int v) {
-        NOV = v;
-        adj = new list<int>[v];
-    }
+    // Process nodes in the queue
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        cout << node << " ";
 
-    void addEdge(int s, int d) {
-        adj[s].push_back(d);
-    }
-
-    void BFS(int a) {
-        vector<bool> vis(NOV, false);
-        queue<int> q;
-
-        vis[a] = true;
-        q.push(a);
-
-        while (!q.empty()) {
-            int c = q.front();
-            q.pop();
-            cout << " " << c;
-
-            for (auto next : adj[c]) {
-                if (!vis[next]) {
-                    vis[next] = true;
-                    q.push(next);
-                }
+        // Enqueue unvisited neighbors
+        for (int neighbor : adjList[node]) {
+            if (!visited[neighbor]) {
+                q.push(neighbor);
+                visited[neighbor] = true;
             }
         }
     }
-
-    ~GraphBFS() {
-        delete[] adj;
-    }
-};
+}
 
 int main() {
-    int NOV, NOE;
-    cout << "Enter number of vertices: ";
-    cin >> NOV;
-    cout << "Enter number of edges: ";
-    cin >> NOE;
+    int numNodes, numEdges;
+    cin >> numNodes >>  numEdges;
+    vector<vector<int>> adjList(numNodes + 1);
 
-    GraphBFS g(NOV);
-
-    while (NOE != 0) {
-        int s, d;
-        cout << "Enter source of edge: ";
-        cin >> s;
-        cout << "Enter destination of edge: ";
-        cin >> d;
-
-        g.addEdge(s, d);
-        NOE--;
+    // Adding edges to the graph
+    for(int i = 0; i < numEdges; i++) {
+        int u, v;
+        cin >> u >> v;
+       adjList[u].push_back(v);
+       adjList[v].push_back(u);
     }
 
-    cout << "BFS start from: 0";
-    g.BFS(0);
+    // Perform BFS starting from node 1
+    vector<bool> visited(numNodes + 1, false);
+    cout << "BFS traversal: ";
+    bfs(1, visited, adjList);
 
     return 0;
 }
