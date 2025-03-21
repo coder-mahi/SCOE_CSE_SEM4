@@ -26,6 +26,8 @@ public class Assignment4 extends DB{
 
         System.out.print("Enter number of placed students: ");
         setPlacementRecords(sc.nextInt());
+
+        sc.close();
     }
     
     public void display() {
@@ -68,5 +70,7 @@ public class Assignment4 extends DB{
             System.out.println("do you want to contiiinue........");
             c=sc.nextInt();
         } while(c==1);
+
+        sc.close();
         }
 }
