@@ -22,7 +22,7 @@ void prims(int distance[][10],string cities[],int v){
                     if(!visited[j] && distance[i][j]<min){
                         min = distance[i][j];
                         x = i;
-                        y = j;
+                        y =j;
                     }
                 }
             }

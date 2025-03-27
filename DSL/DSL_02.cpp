@@ -83,7 +83,7 @@ TreeNode* deleteNode(TreeNode*& root,int id){
             }
             root->id = temp->id;
             root->name = temp->name;
-            root->sal = temp->sal;
+            root->sal = temp->sal; //updation in deleted node
 
             root->right = deleteNode(root->right,temp->id); //delete inorder sucessorr
         }
