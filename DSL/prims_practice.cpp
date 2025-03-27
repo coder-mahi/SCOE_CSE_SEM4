@@ -13,9 +13,12 @@ void prims(int cost[][10],int v)
         int y = -1;
         visited[0] = true;
 
-        for(int i=0;i<v;i++){
-            if(visited[i]){
-                for(int j=0;j<v;j++){
+        for(int i=0;i<v;i++)
+        {
+            if(visited[i])
+            {
+                for(int j=0;j<v;j++)
+                {
                     if(!visited[j] && cost[i][j]<min){
                         min = cost[i][j];
                         x = i;
@@ -24,6 +27,7 @@ void prims(int cost[][10],int v)
                 }
             }
         }
+
         if(x!=-1 && y!=-1){
             visited[y] = true;
             cout<<"edge("<<x<<","<<y<<") with weight :> "<<min<<endl;
@@ -38,7 +42,8 @@ int main(){
     cin>>v;
     int cost[10][10];
     for(int i=0;i<v;i++){
-        for(int j=0;j<v;j++){
+        for(int j=0;j<v;j++)
+        {
             cin>>cost[i][j];
         }
     }
