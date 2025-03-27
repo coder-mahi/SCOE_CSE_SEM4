@@ -21,7 +21,6 @@ void colisionResolution(int key,int i){
         colisionResolution(key,i);
     }
 }
-
 void insert(int key){
     count =0;
     int index = hashFunction(key);
