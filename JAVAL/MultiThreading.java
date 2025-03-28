@@ -1,13 +1,14 @@
 import java.lang.Thread;
 
-class MyThread1 extends Thread {
+class MyThread1 extends Thread 
+{
     private int count = 0;
-
     @Override
     public void run() {
         System.out.println("Thread is running -- by extending Thread class....");
-        try {
-            for (int i = 0; i < 10; i++) {
+        try 
+        {
+            for(int i = 0; i < 10; i++) {
                 System.out.println("MyThread1: " + i);
                 synchronizedCounter();
                 System.out.println(unsynchronizedMethod());
