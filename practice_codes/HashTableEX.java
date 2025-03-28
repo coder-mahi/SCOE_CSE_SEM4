@@ -1,7 +1,3 @@
-//Name = Labhade Siddharth Popat
-//Roll No. : 155
-
-// Source Code
 
 import java.util.Scanner;
 

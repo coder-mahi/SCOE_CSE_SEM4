@@ -1,8 +1,3 @@
-//Name = Labhade Siddharth Popat
-//Rloo No. : 155
-
-//Source Code :
-
 import java.util.Arrays;
 import java.util.Scanner;
 

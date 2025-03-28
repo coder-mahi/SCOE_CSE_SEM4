@@ -1,6 +1,3 @@
-//Name:- Labhade Siddharth Popat
-//Roll no.:-155 Div:-B Batch:-S1B
-
 //Program of Implementation of Huffman Tree
 
 import java.util.Comparator;
