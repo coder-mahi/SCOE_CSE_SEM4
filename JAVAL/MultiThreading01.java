@@ -1,48 +1,69 @@
 import java.lang.Thread;
-
 class BankAccount 
 {
     private int balance;
-
-    public BankAccount(int initialBalance) {
-        this.balance = initialBalance;
+    public BankAccount(int initialBalance) 
+    {
+        this.balance=initialBalance;
     }
 
     public synchronized void deposit(int amount) {
-        balance = balance + amount;
-        System.out.println(Thread.currentThread().getName()+"Amoount deposited :> "+amount+", Current Balance: " + balance);
+        balance += amount;
+System.out.println(Thread.currentThread().getName() + " deposited: "+amount+", Current Balance: "+balance);
+        notifyAll(); 
     }
 
     public synchronized void withdraw(int amount) {
-        if (amount <= balance) {
-            balance -= amount;
-            System.out.println(Thread.currentThread().getName() + " withdrew: " + amount + ", Current Balance: " + balance);
-        } else {
-            System.out.println(Thread.currentThread().getName() + " tried to withdraw: " + amount + ", Insufficient Balance!");
+        while(amount>balance) 
+        {
+            System.out.println(Thread.currentThread().getName() +"is waiting to withdraw: " +amount+", Insufficient Balance!");
+            try
+            {
+                wait(); 
+            }
+            catch(Exception e) 
+            {
+                e.printStackTrace();
+            }
         }
+
+        balance= balance-amount;
+
+        System.out.println(Thread.currentThread().getName()+"withdraww:"+amount+",Current Balance: "+ balance);
     }
 
-    public synchronized void checkBalance() {
-        System.out.println(Thread.currentThread().getName() + " checked balance: " + balance);
+    public synchronized void checkBalance() 
+    {
+        System.out.println(Thread.currentThread().getName()+" checked balance: "+balance);
     }
+
+    public void random(){
+        System.out.println(Thread.currentThread().getName()+" Random method called...");
+    }
+
 }
 
-class DepositThread extends Thread {
+class DepositThread extends Thread 
+{
     private BankAccount account;
     private int amount;
 
-    public DepositThread(BankAccount account, int amount) {
-        this.account = account;
-        this.amount = amount;
+    public DepositThread(BankAccount account,int amount)
+    {
+        this.account=account;
+        this.amount=amount;
     }
 
     @Override
-    public void run() {
-        for (int i = 0; i < 3; i++) {
+    public void run() 
+    {
+        for(int i=0;i<3;i++){
             account.deposit(amount);
-            try {
-                Thread.sleep(300); // Simulate delay
-            } catch (InterruptedException e) {
+            try 
+            {
+                Thread.sleep(700); 
+            } 
+            catch(Exception e) {
                 e.printStackTrace();
             }
         }
@@ -59,19 +80,23 @@ class WithdrawThread extends Thread {
     }
 
     @Override
-    public void run() {
-        for (int i = 0; i < 3; i++) {
+    public void run()
+    {
+        for(int i=0;i<3;i++){
             account.withdraw(amount);
-            try {
-                Thread.sleep(400); // Simulate delay
-            } catch (InterruptedException e) {
+            try 
+            {
+                Thread.sleep(700); 
+            } 
+            catch(InterruptedException e) 
+            {
                 e.printStackTrace();
             }
         }
     }
 }
 
-class BalanceInquiryThread extends Thread {
+class BalanceInquiryThread extends Thread{
     private BankAccount account;
 
     public BalanceInquiryThread(BankAccount account) {
@@ -79,40 +104,49 @@ class BalanceInquiryThread extends Thread {
     }
 
     @Override
-    public void run() {
-        for (int i = 0; i < 3; i++) {
+    public void run(){
+        for (int i=0;i<3;i++){
             account.checkBalance();
             try {
-                Thread.sleep(500); // Simulate delay
-            } catch (InterruptedException e) {
+                Thread.sleep(500); 
+            } catch(Exception e) {
                 e.printStackTrace();
             }
         }
     }
 }
 
-public class MultiThreading01 {
-    public static void main(String[] args) {
-        BankAccount account = new BankAccount(1000); // Initial balance
+public class MultiThreading01 
+{
+    public static void main(String[] args) 
+    {
+        BankAccount account = new BankAccount(1000); 
 
         DepositThread depositThread = new DepositThread(account, 500);
         WithdrawThread withdrawThread = new WithdrawThread(account, 300);
         BalanceInquiryThread balanceInquiryThread = new BalanceInquiryThread(account);
 
-        System.out.println("Starting Bank Management System...");
+        depositThread.setName("DepositThread");
+        withdrawThread.setName("WithdrawThread");
+        balanceInquiryThread.setName("BalanceInquiryThread");
+
+        System.out.println("\nStarting Bank Management System...");
 
         depositThread.start();
         withdrawThread.start();
         balanceInquiryThread.start();
 
-        try {
+        try 
+        {
             depositThread.join();
             withdrawThread.join();
             balanceInquiryThread.join();
-        } catch (InterruptedException e) {
+        } 
+        catch(InterruptedException e)
+        {
             e.printStackTrace();
         }
 
-        System.out.println("Bank Management System operations completed.");
+        System.out.println("\nBank Management System operations completed.");
     }
 }
