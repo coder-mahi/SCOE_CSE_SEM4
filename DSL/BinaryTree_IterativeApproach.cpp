@@ -27,19 +27,19 @@ void preorder(TreeNode *root1){     //VLR
 void inorder(TreeNode *root1){      //LVR
    stack<TreeNode*> s;
     TreeNode* current = root1;
-    while(current != NULL || !s.empty()) {
+    while(current != NULL || !s.empty()){
         while(current != NULL) {
             s.push(current);
             current = current->left;
         }
         current = s.top();
         s.pop();
-        cout<<current->data << " ";
+        cout<<current->data<<" ";
         current=current->right;
     }
 }
 void postorder(TreeNode *root1){     //LRV
-    stack<TreeNode*> s1, s2;
+    stack<TreeNode*> s1,s2;
     s1.push(root1);
     while(!s1.empty()) {
         TreeNode* node = s1.top();
@@ -48,14 +48,15 @@ void postorder(TreeNode *root1){     //LRV
         if(node->left) s1.push(node->left);
         if(node->right) s1.push(node->right);
     }
-    while (!s2.empty()) {
-        cout << s2.top()->data << " ";
+    while(!s2.empty()){
+        cout<<s2.top()->data<<" ";
         s2.pop();
     }
 }
 void insert(TreeNode *root1,TreeNode *newNode){
     if(root1==nullptr){
         root1=newNode;
+        return;
     }else{
         char ch;
         cout<<"Where you want to insert ?(l/r)";

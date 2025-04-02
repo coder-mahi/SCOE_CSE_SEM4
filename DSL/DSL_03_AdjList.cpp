@@ -13,15 +13,12 @@ struct Node{
 
 class Graph{
     public:
-    
     Node* arr[100];
     string cities[100];
     int vertices,edges;
-
     Graph(int v,int e){
         vertices=v;
         edges=e;
-
         for(int i=0;i<v;i++){
             arr[i]=nullptr;
         }
@@ -79,8 +76,6 @@ class Graph{
             cout<<endl;
         }
     }
-
-
 };
 int main(){
     int v,e;

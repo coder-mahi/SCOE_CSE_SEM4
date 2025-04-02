@@ -1,5 +1,3 @@
-/**/
-
 #include<iostream>
 using namespace std;
 void prims(int distance[][10],string cities[],int v){

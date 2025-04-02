@@ -19,55 +19,57 @@ void insert(TreeNode* &root1, TreeNode* newNode) {
         char ch;
         cout << "Select left or right (l/r) : " << endl;
         cin >> ch;
-        if (ch == 'l' || ch == 'L') {
+        if(ch == 'l' || ch == 'L') {
             if (root1->left == nullptr) {
                 root1->left = newNode;
             } else {
                 insert(root1->left, newNode);
             }
-        } else if (ch == 'r' || ch == 'R') {
+        }else if (ch == 'r' || ch == 'R') {
             if (root1->right == nullptr) {
                 root1->right = newNode;
             } else {
-                insert(root1->right, newNode);
+                insert(root1->right,newNode);
             }
         }
     }
 }
 
-void preorder(TreeNode* root1) {
-    if (root1 == nullptr) return;
-    cout << root1->data << " -> ";
+void preorder(TreeNode* root1) 
+{
+    if(root1==nullptr) return;
+    cout<<root1->data<<" -> ";
     preorder(root1->left);
     preorder(root1->right);
 }
 
-void inorder(TreeNode* root1) {
-    if (root1 == nullptr) return;
+void inorder(TreeNode* root1) 
+{
+    if(root1==nullptr) return;
     inorder(root1->left);
-    cout << root1->data << " -> ";
+    cout<<root1->data<< " -> ";
     inorder(root1->right);
 }
 
-void postorder(TreeNode* root1) {
-    if (root1 == nullptr) return;
+void postorder(TreeNode* root1){
+    if(root1 == nullptr) return;
     postorder(root1->left);
     postorder(root1->right);
-    cout << root1->data << " -> ";
+    cout<<root1->data<< " -> ";
 }
 
-void display(TreeNode* root1) {
-    if (root1 == nullptr) {
-        cout << "Tree is empty...!!!" << endl;
+void display(TreeNode* root1){
+    if(root1==nullptr) {
+        cout<<"Tree is empty...!!!"<<endl;
         return;
     }
     int ch;
-    cout << "Choose traversal : " << endl;
-    cout << "1. Preorder" << endl;
-    cout << "2. Inorder" << endl;
-    cout << "3. Postorder" << endl;
-    cin >> ch;
-    switch (ch) {
+    cout<<"Choose traversal : "<<endl;
+    cout<<"1. Preorder"<<endl;
+    cout<<"2. Inorder"<<endl;
+    cout<<"3. Postorder"<<endl;
+    cin>>ch;
+    switch(ch){
         case 1: 
         		preorder(root1); 
         		break;
@@ -134,13 +136,13 @@ int countHeightOfTree(TreeNode* root1){
     return max(leftHeight,rightHeight)+1;
 }
 
-int main() {
-    int ch, val, c;
-    do {
+int main(){
+    int ch,val,c;
+    do{
         cout<<"Select operation on Binary Tree : "<<endl;
         cout<<"1. Insert\n2. Number of nodes\n3. Leaf nodes\n4. Ancestor of node\n5.Height of tree\n6. Display" << endl;
-        cin >> ch;
-        switch (ch) {
+        cin>>ch;
+        switch(ch){
             case 1: 
             	create(); 
             	break;
@@ -162,14 +164,13 @@ int main() {
             	cout<<"Height of tree: "<<countHeightOfTree(root)<<endl; 
             	break;
             case 6: 
-            		display(root); 
-            		break;
+            	display(root); 
+            	break;
             default: 
-            		cout<<"Invalid option!" << endl;
+            	cout<<"Invalid option!" << endl;
         }
-        cout << "Do you want to continue? (1/0) : ";
-        cin >> c;
-    } while (c==1);
+        cout<<"Do you want to continue? (1/0) :";
+        cin>>c;
+    }while(c==1);
     return 0;
 }
-

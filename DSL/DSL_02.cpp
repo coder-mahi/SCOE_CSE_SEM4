@@ -58,21 +58,23 @@ TreeNode* deleteNode(TreeNode*& root,int id){
     if(root==nullptr) {
         return root;
     }
-    if(id<root->id){
+    if(id<root->id){                               //if less
         root->left = deleteNode(root->left,id);
-    }else if(id > root->id){
+    }else if(id > root->id){                       //if greater
         root->right = deleteNode(root->right,id);
     }else{ 
-        
-        if(root->left == nullptr&&root->right==nullptr)
+        // id found -
+        //node to be deleted heving 3 cases :
+        // 1. leaf node 2.have only one child 3.have both children
+        if(root->left == nullptr&&root->right==nullptr) //leaf node
         {
             delete root;
             return nullptr;
-        }else if(root->left == nullptr){ 
+        }else if(root->left == nullptr){  //one child - right present
             TreeNode* temp = root->right;
             delete root;
             return temp;
-        }else if(root->right == nullptr){ 
+        }else if(root->right == nullptr){  //one child - left present
             TreeNode* temp = root->left;
             delete root;
             return temp;
