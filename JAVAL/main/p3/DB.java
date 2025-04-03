@@ -10,7 +10,7 @@ public class DB implements PlacementRecord
     private String clg_name;
 
     private int roll_no;
-     private int faculty_id; ;
+     private int faculty_id; 
     private int placed_students;
 
     private int clg_id;
