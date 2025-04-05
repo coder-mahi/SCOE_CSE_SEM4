@@ -1,73 +1,60 @@
-#include <iostream>
+#include<iostream>
+#define INF 999
 using namespace std;
-class Graph {
-public:
-    int g[100][100];       
-    int distance[100];     
-    bool visited[100];     
-    int n;                
-    Graph(int matrix[100][100], int n) {
-        this->n = n;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                g[i][j] = matrix[i][j];
-            }
-            distance[i] = 999;  
+class Graph{
+    public:
+    int V,src;
+    int u;
+    int distance[10];
+    bool visited[10];
+    Graph(int V){
+        this->V = V;
+        for(int i=0;i<V;i++){
+            distance[i] = INF;
             visited[i] = false;
         }
     }
+    void dijkstra(int g[][10],int src){
+        int current;
+        int min = INF;
+        int minindex = -1;
 
-    void dijkstra(int src) {
-        distance[src] = 0; 
+        distance[src] = 0;
+        visited[src] = true;
 
-        for (int count = 0; count < n - 1; count++) {
-            int minDist = 999, current = -1;
-            for (int i = 0; i < n; i++) {
-                if (!visited[i] && distance[i] < minDist) {
-                    minDist = distance[i];
-                    current = i;
+        for(int count=0; count<V-1; count++){
+            for(int i=0;i<V;i++){
+                if(!visited[i] && distance[i]<min){
+                    min = distance[i];
+                    minindex = i;
                 }
             }
 
-            if (current == -1) break; // No reachable nodes left
-            visited[current] = true;
+        current = minindex;
+        visited[current] = true;
 
-            // Update distances of adjacent nodes
-            for(int j=0;j<n;j++){
-                if(!visited[j] && g[current][j]!=999 && distance[current]+g[current][j]<distance[j])
-                {
-                    distance[j] =distance[current]+g[current][j];
-                }
+        for(int v=0;v<V;v++){
+            if(g[current][v] && !visited[v] && distance[current]+g[current][v]<distance[v]){
+                distance[v] = distance[current]+g[current][v];
             }
         }
-
-        cout<<"Shortest distances from source vertex "<<src<<":\n";
-        for(int i=0;i<n;i++) 
-        {
-            cout<<"vertex"<<i<<"-> distance:"<<distance[i]<<endl;
+    }
+        for(int i=0;i<V;i++){
+            cout<<i<<" "<<distance[i]<<endl;
         }
     }
 };
-
-int main()
-{
-    int n,src;
-    cout<<"Enter number of vertices: ";
-    cin>>n;
-
-    int matrix[100][100];
-    cout<<"Enter adjacency matrix\n";
-    for (int i=0;i<n;i++) {
-        for (int j=0;j<n;j++) 
-        {
-            cin>>matrix[i][j];
+int main(){
+    int v,src,g[10][10];
+    cin>>v;
+    for(int i=0;i<v;i++){
+        for(int j=0;j<v;j++){
+            cin>>g[i][j];
         }
     }
-
-    Graph obj(matrix,n);
-
-    cout<<"Enter source vertex: ";
+    cout<<"Enter src :>"<<endl;
     cin>>src;
-    obj.dijkstra(src);
+    Graph obj(v);
+    obj.dijkstra(g,src);
     return 0;
 }
