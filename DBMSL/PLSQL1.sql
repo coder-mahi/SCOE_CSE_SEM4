@@ -1,10 +1,12 @@
-DELIMITER //
-CREATE PROCEDURE HelloWorld()
-BEGIN
-    SELECT 'Hello, World from stored procedure!' AS greeting;
-END //
+delimiter //
+create procedure calculation(a int, b int)
+begin
+    declare sum int;
+    declare sub int;
+    set sum = a+b;
+    set sub = a-b;
+    select concat('Addition: ',sum,', Substraction: ',sub); 
+end //
 
-DELIMITER ;
-
--- Call the procedure
-CALL HelloWorld();
+call calculation(10,20);
+//
