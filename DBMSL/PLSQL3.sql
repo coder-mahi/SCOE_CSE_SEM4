@@ -1,17 +1,31 @@
--- calculate fine and insert ino fine table
 delimiter //
-create procedure calc_fine()
+create procedure calc_fine1()
 begin
-    declare fine_per_day int default 10;
+    declare r int;
+    declare d date;
 
-    insert into fine (roll, date_of_return, amount)
-    select roll, curdate(), datediff(curdate(), date_issue) * fine_per_day
-    from library
-    where datediff(curdate(), date_issue) > 0;
+    declare amt int;
+    declare vfinished int default 0;
 
-    select concate(select * from fine) as result;
+    declare lib_cur cursor for select roll,issue_date from lib;
+    declare continue handler for not found set vfinished = 1;
 
-end;
+    open lib_cur;
+    getdata:loop
+        fetch lib_cur into r,d;
+        if vfinished = 1 then
+            leave getdata;
+        end if;
+
+        if datediff(curdate(),d)>10 then
+            set amt = (datediff(curdate(),d)-10)*5;
+        else
+            set amt = 0;
+        end if;
+
+        insert into fine(roll,amount) values(r,amt);
+    end loop;
+
+    close lib_cur;
+end 
 //
-
-call calc_fine();
