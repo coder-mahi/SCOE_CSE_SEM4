@@ -1,26 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart Waste Bin Dashboard</title>
-  <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card.wet {
+      border-left: 5px solid #3498db;
+    }
+
+    .card.dry {
+      border-left: 5px solid #e74c3c;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .card p {
+      margin: 8px 0;
+    }
+
+    .timestamp {
+      font-size: 0.8em;
+      color: #7f8c8d;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .status-wet {
+      background-color: #3498db;
+    }
+
+    .status-dry {
+      background-color: #e74c3c;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 40px;
+      color: #7f8c8d;
+    }
+
+    .controls {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Smart Waste Bin Dashboard</h1>
+
     <div class="controls">
       <button id="addTestData">Add Test Data</button>
       <button id="clearData">Clear All Data</button>
     </div>
+
     <div class="dashboard" id="dashboard">
       <div class="no-data" id="noDataMessage">
         No waste data available. Click "Add Test Data" to test the dashboard.
       </div>
     </div>
   </div>
-  <script src="dashboard.js"></script>
+
+  <script>
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: window.env.FIREBASE_API_KEY,
+      authDomain: window.env.FIREBASE_AUTH_DOMAIN,
+      databaseURL: window.env.FIREBASE_DATABASE_URL,
+      projectId: window.env.FIREBASE_PROJECT_ID,
+      storageBucket: window.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: window.env.FIREBASE_MESSAGING_SENDER_ID,
+      appId: window.env.FIREBASE_APP_ID
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Reference to the waste_data in Firebase
+    const wasteRef = database.ref('waste_data');
+
+    // DOM elements
+    const dashboard = document.getElementById('dashboard');
+    const noDataMessage = document.getElementById('noDataMessage');
+    const addTestDataBtn = document.getElementById('addTestData');
+    const clearDataBtn = document.getElementById('clearData');
+
+    // Function to add test data to Firebase
+    function addTestData() {
+      const testData = {
+        "distance_cm": Math.floor(Math.random() * 15) + 5,
+        "moisture_percent": Math.floor(Math.random() * 100),
+        "waste_type": Math.random() > 0.5 ? "WET" : "DRY",
+        "timestamp": new Date().toISOString()
+      };
+
+      const newRef = wasteRef.push();
+      newRef.set(testData)
+        .then(() => console.log("Test data added successfully"))
+        .catch(error => console.error("Error adding test data:", error));
+    }
+
+    // Function to clear all data from Firebase
+    function clearData() {
+      if (confirm("Are you sure you want to delete all data?")) {
+        wasteRef.remove()
+          .then(() => {
+            console.log("Data cleared successfully");
+            dashboard.innerHTML = '';
+            noDataMessage.style.display = 'block';
+          })
+          .catch(error => console.error("Error clearing data:", error));
+      }
+    }
+
+    // Function to display data from Firebase
+    function displayData(snapshot) {
+      const data = snapshot.val();
+
+      if (!data) {
+        noDataMessage.style.display = 'block';
+        return;
+      }
+
+      noDataMessage.style.display = 'none';
+      dashboard.innerHTML = '';
+
+      Object.entries(data).forEach(([key, entry]) => {
+        const card = document.createElement('div');
+        card.className = `card ${entry.waste_type.toLowerCase()}`;
+
+        const date = new Date(entry.timestamp || parseInt(key));
+
+        card.innerHTML = `
+                    <h3>
+                        <span class="status-indicator status-${entry.waste_type.toLowerCase()}"></span>
+                        ${entry.waste_type} Waste
+                    </h3>
+                    <p><strong>Moisture:</strong> ${entry.moisture_percent}%</p>
+                    <p><strong>Distance:</strong> ${entry.distance_cm} cm</p>
+                    <p class="timestamp">${date.toLocaleString()}</p>
+                `;
+
+        dashboard.appendChild(card);
+      });
+    }
+
+    // Event listeners
+    addTestDataBtn.addEventListener('click', addTestData);
+    clearDataBtn.addEventListener('click', clearData);
+
+    // Listen for real-time updates
+    wasteRef.on('value', displayData);
+  </script>
 </body>
+
 </html>
