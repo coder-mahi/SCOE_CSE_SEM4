@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Waste Bin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Waste Bin Dashboard</h1>
+    <div class="controls">
+      <button id="addTestData">Add Test Data</button>
+      <button id="clearData">Clear All Data</button>
+    </div>
+    <div class="dashboard" id="dashboard">
+      <div class="no-data" id="noDataMessage">
+        No waste data available. Click "Add Test Data" to test the dashboard.
+      </div>
+    </div>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
