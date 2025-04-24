@@ -1,17 +1,13 @@
 import java.awt.Button;
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.*;
 import java.awt.Frame;
 import java.awt.Graphics;
-
 import java.sql.*;
 
-import org.w3c.dom.events.MouseEvent;
-
-public class Frame144 extends Frame implements ActionListener,MouseListener
+public class Frame144 extends Frame implements ActionListener
 {
     Label l1,l2,l3,l4;
     TextField t1,t2,t3,t4;
@@ -79,18 +75,20 @@ public class Frame144 extends Frame implements ActionListener,MouseListener
                 displayText ="Registered successfulltyy!";
                 status.setText("Registered succesfully..! Username: "+s1+", Email:"+s2);
             try{
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_practice","root","mahesh");
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_practice","root","mahesh");
                 
                 PreparedStatement stmt = con.prepareStatement("INSERT INTO signup(username,email,password) VALUES (?,?,?)");                    
                     
                     stmt.setString(1,s1);
                     stmt.setString(2,s2);
                     stmt.setString(3,s3);
-
+                
                     stmt.executeUpdate(); 
                     con.close(); 
-                } catch(Exception ex) {
+                } 
+                catch(Exception ex) 
+                {
                     displayText = "db errorr: "+ex.getMessage();
                     status.setText("Something went wrong:"+ex.getMessage());
                     ex.printStackTrace();
@@ -107,27 +105,6 @@ public class Frame144 extends Frame implements ActionListener,MouseListener
         }
         repaint();
     }
-
-     @Override
-    public void mouseClicked(MouseEvent e) {
-        setBackground(Color.YELLOW);
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        setBackground(Color.RED);
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        setBackground(Color.GREEN);
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        setBackground(Color.BLUE);
-    }
-
 
     public static void main(String[] args) {
         new Frame144();
