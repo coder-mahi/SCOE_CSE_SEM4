@@ -76,6 +76,7 @@ public class Frame144 extends Frame implements ActionListener
                 status.setText("Registered succesfully..! Username: "+s1+", Email:"+s2);
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
+                
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_practice","root","mahesh");
                 
                 PreparedStatement stmt = con.prepareStatement("INSERT INTO signup(username,email,password) VALUES (?,?,?)");                    

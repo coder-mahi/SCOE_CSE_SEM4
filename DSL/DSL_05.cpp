@@ -13,10 +13,10 @@ public:
         this->V = V;
         for(int i=0;i<V;i++)
         {
-            distance[i] = INF;
-            visited[i] = false;
+            distance[i]=INF;
+            visited[i]=false;
         }
-    }
+ }
 
     void dijkstra(int g[][10], int src)
     {
@@ -36,7 +36,7 @@ public:
             }
 
             int current = minindex;
-            visited[current] =true;
+            visited[current]=true;
 
             for(int v=0;v<V;v++){
                 if(g[current][v] && !visited[v] && distance[current] + g[current][v] < distance[v]) {
@@ -45,27 +45,30 @@ public:
             }
         }
 
-        cout << "\nShortest distances from node " << src << ":\n";
-        for (int i = 0; i < V; i++) {
-            cout << "To node " << i << " = " << distance[i] << endl;
+        cout<<"\nShortest distances from nodee "<<src<<":\n";
+        for(int i=0;i<V;i++){
+            cout<<"to node "<<i<<" ="<<distance[i]<<endl;
         }
     }
 };
 
 int main() {
-    int v, src, g[10][10];
-    cout << "Enter number of vertices: ";
-    cin >> v;
+    int v,src,g[10][10];
+    cout<<"Enter number of vertices: ";
+    cin>>v;
 
-    cout << "Enter adjacency matrix:\n";
-    for (int i = 0; i < v; i++) {
-        for (int j = 0; j < v; j++) {
-            cin >> g[i][j];
+    cout<<"Enter adjacency matrix:\n";
+    for(int i=0;i<v;i++){
+        for (int j = 0; j<v; j++) {
+            cin>>g[i][j];
+            if(g[i][j]==0){
+                g[i][j] = 999;
+            }
         }
     }
 
-    cout << "Enter source node: ";
-    cin >> src;
+    cout<<"Enter source node: ";
+    cin>>src;
 
     Graph obj(v);
     obj.dijkstra(g, src);

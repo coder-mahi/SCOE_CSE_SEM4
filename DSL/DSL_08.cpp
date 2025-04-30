@@ -7,7 +7,7 @@ void optimalBST(float p[], float q[], int keys[], int n) {
     float w[MAX][MAX] ={0}; 
     float r[MAX][MAX] ={0}; 
 
-    for (int i = 0; i <= n; i++) {
+    for (int i=0;i<=n;i++){
         for (int j = i; j <= n; j++) {
             if (i == j) {
                 w[i][j] = q[i];
@@ -17,7 +17,7 @@ void optimalBST(float p[], float q[], int keys[], int n) {
         }
     }
 
-    for(int i = 0; i <= n; i++) {
+    for(int i = 0; i<=n; i++) {
         c[i][i] = 0; 
     }
 
@@ -27,28 +27,28 @@ void optimalBST(float p[], float q[], int keys[], int n) {
         {
             int j = i+l;
             c[i][j] =9999;
-            for(int k=i+1; k <= j; k++) 
+            for(int k=i+1; k<=j; k++) 
             { 
-                int cost= c[i][k-1] +c[k][j]+w[i][j];
+                int cost= c[i][k-1] + c[k][j]+w[i][j];
                 if(cost<c[i][j]) 
                 {
-                    c[i][j] = cost;
-                    r[i][j] = k;
+                    c[i][j] =cost;
+                    r[i][j]= k;
                 }
             }
         }
     }
 
-    cout << "Weight Matrix (w):" <<endl;
-    for(int i=0; i<= n; i++) {
+    cout<<"Weight Matrix (w) :"<<endl;
+    for(int i=0; i<=n;i++) {
         for(int j=0; j<=n; j++) 
         {
             cout<<w[i][j]<<"\t";
         }
-        cout << endl;
+        cout<<endl;
     }
 
-    cout << "\nCost Matrix (c):" << endl;
+    cout<<"\nCost Matrix (c):"<<endl;
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j <= n; j++) {
             cout << c[i][j] << "\t";
@@ -65,13 +65,16 @@ void optimalBST(float p[], float q[], int keys[], int n) {
     }
 
     cout<<"\nOptimal Cost of the bst :>"<<c[0][n]<<endl;
+
+    
 }
 
 int main() {
     int n = 4; 
     int keys[] = {10, 20, 30,40}; 
-    float p[] = {0.2,0.3,0.4,0.1}; 
-    float q[] = {0.1,0.1,0.2,0.4,0.2}; 
+    float p[] = {3,3,1,1}; 
+    float q[] = {2,3,1,1,1}; 
+    
     optimalBST(p, q, keys, n);
     return 0;
 }

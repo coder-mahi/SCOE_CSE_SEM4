@@ -29,6 +29,7 @@ void insertPatient() {
             medicalHistory[probeIndex].patient_id =id;
             medicalHistory[probeIndex].patient_name =name;
             medicalHistory[probeIndex].disease = disease;
+
             cout<<"Inserted at index :> "<<probeIndex<<endl;
             return;
         }
@@ -112,6 +113,7 @@ int main(){
             break;
     }
     }
+    
     while(ch<5);
     return 0;
 }

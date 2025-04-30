@@ -21,7 +21,7 @@ public:
     void Insert(int k) {
         int index = hash(k);
         table[index].push_back(k);
-        cout << k << " is added successfully" << endl;
+        cout<<k<<" is added successfully"<<endl;
     }
 
     void Display() {
