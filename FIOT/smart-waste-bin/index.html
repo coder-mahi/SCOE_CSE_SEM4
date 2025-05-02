@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Waste Bin Dashboard</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card.full {
+            border-left: 5px solid #e74c3c;
+        }
+        .card.not-full {
+            border-left: 5px solid #2ecc71;
+        }
+        .card.alert {
+            border-left: 5px solid #f39c12;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(243, 156, 18, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .card p {
+            margin: 8px 0;
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .status-full {
+            background-color: #e74c3c;
+        }
+        .status-not-full {
+            background-color: #2ecc71;
+        }
+        .status-alert {
+            background-color: #f39c12;
+        }
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .fill-meter {
+            height: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .fill-level {
+            height: 100%;
+            background: linear-gradient(to right, #2ecc71, #f39c12, #e74c3c);
+        }
+        .bin-id {
+            font-weight: bold;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Waste Bin Dashboard</h1>
+        
+        <div class="controls">
+            <button id="addTestData">Add Test Data</button>
+            <button id="clearData">Clear All Data</button>
+        </div>
+        
+        <div class="dashboard" id="dashboard">
+            <div class="no-data" id="noDataMessage">
+                No waste bin data available. Click "Add Test Data" to test the dashboard.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoHlh6iAfutERoVNqAyndfnkLngoa1SYoeZNEcsk",
+            authDomain: "smartwastebin-fee2d.firebaseapp.com",
+            databaseURL: "https://smartwastebin-fee2d-default-rtdb.firebaseio.com",
+            projectId: "smartwastebin-fee2d",
+            storageBucket: "smartwastebin-fee2d.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef1234567890abcdef"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Changed reference to match your database structure
+        const wasteRef = database.ref('waste_bin_data');
+
+        const dashboard = document.getElementById('dashboard');
+        const noDataMessage = document.getElementById('noDataMessage');
+        const addTestDataBtn = document.getElementById('addTestData');
+        const clearDataBtn = document.getElementById('clearData');
+
+        function addTestData() {
+            const binId = Math.floor(Math.random() * 9000) + 1000; // Generate random 4-digit bin ID
+            const testData = {
+                "alert": Math.random() > 0.7,
+                "distance_cm": Math.floor(Math.random() * 50) + 5,
+                "fill_percentage": Math.floor(Math.random() * 100),
+                "status": Math.random() > 0.5 ? "Full" : "Not Full",
+                "timestamp": new Date().getTime()
+            };
+
+            // Update to set data under a specific bin ID
+            wasteRef.child(binId).set(testData)
+                .then(() => console.log("Test data added successfully for bin", binId))
+                .catch(error => console.error("Error adding test data:", error));
+        }
+
+        function clearData() {
+            if (confirm("Are you sure you want to delete all data?")) {
+                wasteRef.remove()
+                    .then(() => {
+                        console.log("Data cleared successfully");
+                        dashboard.innerHTML = '';
+                        noDataMessage.style.display = 'block';
+                    })
+                    .catch(error => console.error("Error clearing data:", error));
+            }
+        }
+
+        function displayData(snapshot) {
+            const data = snapshot.val();
+            
+            if (!data) {
+                noDataMessage.style.display = 'block';
+                return;
+            }
+            
+            noDataMessage.style.display = 'none';
+            dashboard.innerHTML = '';
+            
+            Object.entries(data).forEach(([binId, binData]) => {
+                const card = document.createElement('div');
+                const statusClass = binData.alert ? 'alert' : binData.status.toLowerCase().replace(' ', '-');
+                card.className = `card ${statusClass}`;
+                
+                const date = new Date(binData.timestamp || parseInt(binId));
+                
+                card.innerHTML = `
+                    <h3>
+                        <span class="status-indicator status-${statusClass}"></span>
+                        Bin ID: <span class="bin-id">${binId}</span> - ${binData.status} ${binData.alert ? '(ALERT!)' : ''}
+                    </h3>
+                    <p><strong>Fill Percentage:</strong> ${binData.fill_percentage}%</p>
+                    <div class="fill-meter">
+                        <div class="fill-level" style="width: ${binData.fill_percentage}%"></div>
+                    </div>
+                    <p><strong>Distance:</strong> ${binData.distance_cm} cm</p>
+                    <p><strong>Alert:</strong> ${binData.alert ? 'Yes' : 'No'}</p>
+                    <p class="timestamp">${date.toLocaleString()}</p>
+                `;
+                
+                dashboard.appendChild(card);
+            });
+        }
+
+        addTestDataBtn.addEventListener('click', addTestData);
+        clearDataBtn.addEventListener('click', clearData);
+        wasteRef.on('value', displayData);
+    </script>
+</body>
+</html>
