@@ -47,9 +47,12 @@ int main(){
     root->right->left = new TreeNode(6);
     root->right->right = new TreeNode(7);
 
-    pathSum(root,7);
-    //display the vector 
-    //...
-
+    vector<vector<int>> result =pathSum(root,7);
+    for(const auto& path : result){
+        for(int val:path){
+            cout<<val<<" ";
+        }
+        cout<<endl;
+    }
     return 0;
 }
