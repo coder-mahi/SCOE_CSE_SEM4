@@ -20,20 +20,20 @@ void optimalBST(float p[], float q[], int keys[], int n)
             int j = i + length;
             w[i][j] = w[i][j-1] + p[j-1] + q[j];
             cost[i][j] = 999999;
-            for(int r = i; r < j; r++) 
+            for(int k = i; k < j; k++) 
             {
-                float temp = cost[i][r] + cost[r+1][j] + w[i][j];
+                float temp = cost[i][k] + cost[k+1][j] + w[i][j];
                 if(temp<cost[i][j]) 
                 {
                     cost[i][j] = temp;
-                    root[i][j-1] = r;
+                    root[i][j] = k;
                 }
             }
         } 
     }
 
     cout<<"Minimum search cost: "<<cost[0][n]<<endl;
-    cout<<"Root key of optimal BST:> "<<keys[root[0][n-1]]<<endl;
+    cout<<"Root key of optimal BST:> "<<keys[root[0][n]]<<endl;
 
     for(int i=0;i<=n;i++){
         for(int j=0;j<=n;j++){
