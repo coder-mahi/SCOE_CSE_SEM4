@@ -46,7 +46,7 @@ int main(){
     for(int i=0;i<v;i++){
         cin>>cities[i];
     }
-    cout<<"Enter adjacency matrix distaces between cities :>"<<endl;
+    cout<<"Enter adjacency matrix distances between cities :>"<<endl;
     for(int i=0;i<v;i++){
         for(int j=0;j<v;j++){
             cin>>distance[i][j];

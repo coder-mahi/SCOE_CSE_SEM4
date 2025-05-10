@@ -70,7 +70,7 @@ class Graph{
             Node* temp = arr[i];
 
             while(temp!=nullptr){
-                cout<<temp->city_name<<"-> ";
+                cout<<temp->city_name<<","<<temp->cost<<"-> ";
                 temp= temp->next;
             }
             cout<<endl;

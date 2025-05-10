@@ -54,46 +54,78 @@ void display(TreeNode* root){
     cout<<"ID : "<<root->id<<", Name : "<<root->name<<", Salary : 1"<<root->sal<<"\n"<<endl;
     display(root->right);
 }
+// TreeNode* deleteNode(TreeNode*& root,int id){
+//     if(root==nullptr) {
+//         return root;
+//     }
+//     if(id<root->id){                               //if less
+//         root->left = deleteNode(root->left,id);
+//     }else if(id > root->id){                       //if greater
+//         root->right = deleteNode(root->right,id);
+//     }else{ 
+//         // id found -
+//         //node to be deleted heving 3 cases :
+//         // 1. leaf node 2.have only one child 3.have both children
+//         if(root->left == nullptr&&root->right==nullptr) //leaf node
+//         {
+//             delete root;
+//             return nullptr;
+//         }else if(root->left == nullptr){  //one child - right present
+//             TreeNode* temp = root->right;
+//             delete root;
+//             return temp;
+//         }else if(root->right == nullptr){  //one child - left present
+//             TreeNode* temp = root->left;
+//             delete root;
+//             return temp;
+//         }else{ 
+//            TreeNode* temp = root->right;
+//            while(temp->left){
+//                 temp = temp->left;
+//            }
+//            root->id = temp->id;
+//            root->name = temp->name;
+//            root->sal = temp->sal;
+//            root->right = deleteNode(root->right,temp->id);
+//         }
+//     }
+//     return root;
+// }
+
 TreeNode* deleteNode(TreeNode*& root,int id){
-    if(root==nullptr) {
+    if(root==nullptr){
         return root;
     }
-    if(id<root->id){                               //if less
+    if(id<root->id){
         root->left = deleteNode(root->left,id);
-    }else if(id > root->id){                       //if greater
+    }else if(id>root->id){
         root->right = deleteNode(root->right,id);
-    }else{ 
-        // id found -
-        //node to be deleted heving 3 cases :
-        // 1. leaf node 2.have only one child 3.have both children
-        if(root->left == nullptr&&root->right==nullptr) //leaf node
-        {
-            delete root;
+    }else{
+        //match found
+        if(root->left==nullptr && root->right==nullptr){
             return nullptr;
-        }else if(root->left == nullptr){  //one child - right present
-            TreeNode* temp = root->right;
+        }else if(root->left == nullptr){
+            TreeNode* temp= root->right;
             delete root;
             return temp;
-        }else if(root->right == nullptr){  //one child - left present
-            TreeNode* temp = root->left;
+        }else if(root->right == nullptr){
+            TreeNode* temp= root->left;
             delete root;
             return temp;
-        }else{ 
-            TreeNode* temp = root->right;
+        }else{
+            //inorder successor
+            TreeNode* temp  = root->right;
             while(temp->left){
                 temp = temp->left;
             }
             root->id = temp->id;
             root->name = temp->name;
-            root->sal = temp->sal; //updation in deleted node
+            root->sal = temp->sal;
 
-            root->right = deleteNode(root->right,temp->id); //delete inorder sucessorr
+            root->right = deleteNode(root->right,temp->id);
         }
     }
-    return root;
 }
-
-
 void update(TreeNode*& root, int id, TreeNode* newNode) {
     if(root==nullptr){
         return;

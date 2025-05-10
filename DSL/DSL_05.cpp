@@ -16,7 +16,7 @@ public:
             distance[i]=INF;
             visited[i]=false;
         }
- }
+    }
 
     void dijkstra(int g[][10], int src)
     {

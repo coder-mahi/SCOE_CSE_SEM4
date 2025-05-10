@@ -21,11 +21,11 @@ void optimalBST(float p[], float q[], int keys[], int n) {
         c[i][i] = 0; 
     }
 
-    for(int l = 1;l<=n;l++)
+    for(int length = 1;length<=n;length++)
     {
-        for(int i=0;i<=n-l;i++) 
+        for(int i=0;i<=n-length;i++)
         {
-            int j = i+l;
+            int j = i+length;
             c[i][j] =9999;
             for(int k=i+1; k<=j; k++) 
             { 
