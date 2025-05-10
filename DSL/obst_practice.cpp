@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+const int MAX = 100;
+void optimalBST(float p[],float q[], int keys[],int n){
+    float w[MAX][MAX] = {0};
+    float cost[MAX][MAX] = {0};
+    int root[MAX][MAX] = {0};
+
+    for(int i=0;i<=n;i++){
+        w[i][i] = q[i];
+        cost[i][i] = q[i];
+    }
+
+    for(int length=1;length<=n;length++)
+    {
+        for(int i=0;i<=n-length;i++)
+        {
+            int j = i+length;
+            w[i][j] = w[i][j-1]+p[j-1]+q[j];
+            cost[i][j] = 99999;
+
+            for(int k=i;k<j;k++){
+                float temp = cost[i][k]+cost[k+1][j]+w[i][j];
+
+                if(temp<cost[i][j])
+                {
+                    cost[i][j] = temp;
+                    root[i][j] = k;
+                }
+            }
+        }
+    }
+    cout<<"Minimum search cost :> "<<cost[0][n]<<endl;
+    cout<<"OBST root :>"<<keys[root[0][n]]<<endl;
+}
+int main(){
+    int n = 4;
+    int keys[]={10,20,30,40};
+    float p[]={0.1,0.2,0.3,0.1};
+    float q[]={0.05,0.05,0.05,0.05,0.05};
+    optimalBST(p,q,keys,n);
+    return 0;
+}
