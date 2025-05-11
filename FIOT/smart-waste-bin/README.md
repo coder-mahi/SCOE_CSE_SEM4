@@ -2,8 +2,6 @@
 
 > An innovative IoT-based solution to automate waste management and promote a cleaner environment!
 
-![Smart Waste Bin](https://media.giphy.com/media/iFmw13LV1D15c/giphy.gif) <!-- Replace with your actual project gif -->
-
 ---
 
 ## 📌 Project Overview
@@ -25,19 +23,16 @@ The **Smart Waste Bin** is a smart, sensor-integrated dustbin that detects waste
 
 ## 🛠️ Technologies Used
 
-| Hardware          | Software/Platform       |
-|------------------|-------------------------|
-| 🔌 Arduino/ESP8266 | 💻 Arduino IDE           |
-| 🌐 WiFi Module     | ☁️ Firebase Realtime DB  |
-| 📏 Ultrasonic Sensor | 🌐 Netlify for Dashboard |
-| 🔋 Battery/Power Bank | 📱 HTML, CSS, JavaScript |
+| Hardware              | Software/Platform        |
+|----------------------|--------------------------|
+| 🔌 Arduino/ESP8266    | 💻 Arduino IDE            |
+| 🌐 WiFi Module        | ☁️ Firebase Realtime DB   |
+| 📏 Ultrasonic Sensor  | 🌐 Netlify for Dashboard  |
+| 🔋 Battery/Power Bank | 📱 HTML, CSS, JavaScript  |
 
 ---
 
 ## 📷 Demo & Working
-
-![Working Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWVlNGRyaTVxOGkxemJlN3BubGRudGg2eHZ2dDl5aHc3ZWF6bXV6ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/YOUR_WORKING_GIF/giphy.gif)
-<!-- Replace with your real working gif -->
 
 > The bin detects motion and automatically opens the lid. It tracks the waste level and updates the real-time status on Firebase.
 
@@ -64,9 +59,10 @@ The **Smart Waste Bin** is a smart, sensor-integrated dustbin that detects waste
 
 ## 👨‍💻 Developed By
 
-**Mahesh Shinde**  
-Passionate about IoT, Android, and Web Development.  
+This project was developed by a team of passionate tech enthusiasts.  
+**Mahesh Shinde** contributed to the **software development** part of the project, including web integration and real-time monitoring features.  
 🌐 [My Portfolio](https://shindemaheshportfolio.netlify.app)
+
 
 ---
 
@@ -80,4 +76,3 @@ Got suggestions or issues? Feel free to open an [issue](#) or contact me.
 ## 📄 License
 
 MIT License © 2025 Mahesh Shinde
-
