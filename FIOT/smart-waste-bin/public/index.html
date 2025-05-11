@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Waste Bin Dashboard</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"></style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-trash-alt"></i>
+                <span>SmartBin</span>
+            </div>
+            <div id="currentTime"></div>
+        </header>
+        
+        <h1>Smart Waste Bin Dashboard</h1>
+        <p class="subtitle">Real-time monitoring and management system</p>
+        
+        <div class="stats-row" id="statsRow">
+            <div class="stat-card">
+                <i class="fas fa-trash fa-lg" style="color: var(--primary);"></i>
+                <div class="stat-number" id="totalBins">0</div>
+                <div class="stat-label">TOTAL BINS</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-exclamation-triangle fa-lg" style="color: var(--danger);"></i>
+                <div class="stat-number" id="alertBins">0</div>
+                <div class="stat-label">BINS IN ALERT</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-fill fa-lg" style="color: var(--warning);"></i>
+                <div class="stat-number" id="fullBins">0</div>
+                <div class="stat-label">FULL BINS</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-percentage fa-lg" style="color: var(--secondary);"></i>
+                <div class="stat-number" id="avgFill">0%</div>
+                <div class="stat-label">AVG. FILL LEVEL</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="addTestData" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Test Data
+            </button>
+            <button id="clearData" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Clear All Data
+            </button>
+        </div>
+        
+        <div class="dashboard" id="dashboard">
+            <div class="no-data" id="noDataMessage">
+                <i class="fas fa-database"></i>
+                <h3>No waste bin data available</h3>
+                <p>Click "Add Test Data" to test the dashboard.</p>
+            </div>
+        </div>
+        
+        <div class="charts-row" id="chartsRow" style="display: none;">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">Fill Level Distribution</div>
+                </div>
+                <canvas id="fillLevelChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- In your index.html -->
+<script src="/config.js"></script>  <!-- Now served dynamically -->
+<script src="app.js"></script>
+</body>
+</html>

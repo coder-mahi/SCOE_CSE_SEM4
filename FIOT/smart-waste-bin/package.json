@@ -1,0 +1,17 @@
+{
+  "name": "smart-waste-bin",
+  "version": "1.0.0",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "path-to-regexp": "^8.2.0"
+  }
+}
