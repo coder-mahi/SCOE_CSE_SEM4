@@ -5,7 +5,7 @@ AFTER INSERT ON stud1
 FOR EACH ROW
 BEGIN
     INSERT INTO stud1_log (id, name, idate)
-    VALUES (NEW.id, NEW.name, NEW.idate);
+    VALUES (sid,sname,issued_date) select (sid,sname,issued_date) from stud1;
 END;
 //
 
