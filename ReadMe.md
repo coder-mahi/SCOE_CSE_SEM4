@@ -15,12 +15,11 @@
   <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Google Cloud" />
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
 </div>
-<!--
+
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=maheshshinde9100&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" />
-  <img src="https://img.shields.io/github/followers/maheshshinde9100?label=Followers&style=social" alt="GitHub followers" />
+  <img src="https://komarev.com/ghpvc/?username=coder-mahi&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" />
+  <img src="https://img.shields.io/github/followers/coder-mahi?label=Followers&style=social" alt="GitHub followers" />
 </p>
--->
 
 ---
 
@@ -32,12 +31,12 @@
 - 💻 **Full Stack Developer** with expertise in modern web technologies
 - 🎨 **UI/UX Enthusiast** who believes in pixel-perfect designs
 - 🌟 **Silent Nature** but code speaks volumes
-- 🔥 Currently working on **Individual Projects**
-- 📱 Planning to build **Fetchivo -Web & Android Application**
+- 🔥 Currently working on **Hotel Management Web App**
+- 📱 Planning to build **Programming Notes Android App**
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=maheshshinde9100&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00D9FF&icon_color=00D9FF&text_color=FFFFFF" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=maheshshinde9100&theme=tokyonight&hide_border=true&background=0D1117&stroke=00D9FF&ring=00D9FF&fire=FF6B6B&currStreakLabel=00D9FF" alt="GitHub Streak" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=coder-mahi&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00D9FF&icon_color=00D9FF&text_color=FFFFFF" alt="GitHub Stats" width="48%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=coder-mahi&theme=tokyonight&hide_border=true&background=0D1117&stroke=00D9FF&ring=00D9FF&fire=FF6B6B&currStreakLabel=00D9FF" alt="GitHub Streak" width="48%" />
 </p>
 
 ---
@@ -53,8 +52,8 @@
 </tr>
 <tr>
     <td align="center">
-        <img src="https://skillicons.dev/icons?i=html,css,js,react" /><br>
-        <img src="https://skillicons.dev/icons?i=tailwind,bootstrap,figma" />
+        <img src="https://skillicons.dev/icons?i=html,css,js,react,tailwind,bootstrap" /><br>
+        <img src="https://skillicons.dev/icons?i=figma" />
     </td>
     <td align="center">
         <img src="https://skillicons.dev/icons?i=java,spring,hibernate" />
@@ -63,7 +62,7 @@
         <img src="https://skillicons.dev/icons?i=mysql,mongodb,sqlite,firebase" />
     </td>
     <td align="center">
-        <img src="https://skillicons.dev/icons?i=java,androidstudio" />
+        <img src="https://skillicons.dev/icons?i=java,kotlin,androidstudio" />
     </td>
 </tr>
 </table>
@@ -75,7 +74,7 @@
 
 <p align="center">
     <strong>Programming Languages:</strong><br>
-    <img src="https://skillicons.dev/icons?i=java,cpp,js,python,c" />
+    <img src="https://skillicons.dev/icons?i=java,python,c,cpp,js" />
 </p>
 
 ---
@@ -83,40 +82,46 @@
 ## 📊 GitHub Analytics
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=maheshshinde9100&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=FFFFFF" alt="Top Languages" width="48%" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=maheshshinde9100&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true&hide_border=true" alt="Contribution Graph" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=coder-mahi&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=FFFFFF" alt="Top Languages" width="48%" />
 </p>
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/wakatime?username=maheshshinde9100&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=FFFFFF" alt="Wakatime Stats" />
+  <img src="https://leetcode-stats.vercel.app/api?username=code-with-mahesh&theme=Dark" alt="LeetCode Stats" />
+
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=coder-mahi&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true&hide_border=true" alt="Contribution Graph" width="100%" />
 </div>
+
 
 ---
 
 ## 🏆 Achievements & Badges
 
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=maheshshinde9100&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&row=1" alt="GitHub Trophies" />
+  <img src="https://github-profile-trophy.vercel.app/?username=coder-mahi&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&row=1" alt="GitHub Trophies" />
 </p>
 
 ### 🎯 Professional Achievements
 - **🚀 4+ Internships** completed across Android, Web Development, and ML
 - **☁️ 28+ Google Cloud Badges** earned on Skill Boost
-- **🏅 Google Developer Program** - Cloud Certified
+- **🏅 Google Developer Program** - Kotlin and Cloud Certified
+- **📱 Campus Ambassador** at Skill Intern
 
 ### 💻 Coding Profiles
 <p align="center">
-  <a href="https://leetcode.com/code-with-mahesh" target="_blank">
+  <a href="https://leetcode.com/u/coder-mahi/" target="_blank">
     <img src="https://img.shields.io/badge/-LeetCode-FFA116?style=for-the-badge&logo=LeetCode&logoColor=black" alt="LeetCode" />
   </a>
   <a href="https://www.hackerrank.com/maheshshinde9100" target="_blank">
     <img src="https://img.shields.io/badge/-HackerRank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" alt="HackerRank" />
   </a>
-  <a href="https://auth.geeksforgeeks.org/user/coder_mahi" target="_blank">
+  <a href="https://www.geeksforgeeks.org/user/coder_mahi/" target="_blank">
     <img src="https://img.shields.io/badge/GeeksforGeeks-gray?style=for-the-badge&logo=geeksforgeeks&logoColor=35914c" alt="GeeksforGeeks" />
   </a>
   <a href="https://stackoverflow.com/users/22119667" target="_blank">
     <img src="https://img.shields.io/badge/-Stack%20Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white" alt="Stack Overflow" />
+  </a>
+  <a href="https://instagram.com/mahi_shinde01" target="_blank">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
   </a>
 </p>
 
@@ -130,9 +135,8 @@
 |---------|------------|--------|-------|
 | **🌐 Portfolio Website** | React.js, Tailwind CSS | ✅ Live | [Demo](https://shindemaheshportfolio.netlify.app) |
 | **🎵 YouTube to MP3 App** | Java, Android | ✅ Complete | Private |
-| **👥 Student Mentoring App** | Spring Boot, Android | ✅ Complete | Private |
-| **🏨 Hotel Management Web App** | Java, Spring Boot | 🔄 In Progress | Coming Soon |
-| **📱 Programming Notes App** | Android, Java | 📋 Planned | Coming Soon |
+| **📱 Student Mentoring App** | Android, Java, XML | ✅ Complete | Private |
+| **👥 Mentee Connect** | Spring Boot, React.js | 🔄 In Progress | Private |
 
 </div>
 
@@ -141,7 +145,7 @@
 ## 📈 Contribution Snake
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/maheshshinde9100/maheshshinde9100/output/snake.svg" alt="Snake animation" />
+  <img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg" alt="Snake animation" />
 </div>
 
 ---
@@ -149,7 +153,37 @@
 ## 🎵 Currently Vibing To
 
 <div align="center">
-  <img src="https://spotify-recently-played-readme.vercel.app/api?user=31k5kez4jgwdxo77c6zo6fbzm7p4&unique=true&count=1&width=600" alt="Spotify" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=18&pause=1000&color=1DB954&center=true&vCenter=true&random=false&width=400&lines=♪+Now+Playing...+♪;🎧+Headlights+-+Alan+Walker+🎧;🎵+Electronic+%7C+Dance+🎵;✨+Feel+the+beat...+✨" alt="Now Playing" />
+</div>
+
+<div align="center" style="margin: 20px 0;">
+  <a href="https://open.spotify.com/track/7BhmwvCdQZNwuQXSHw5TzP" target="_blank">
+    <img src="https://img.shields.io/badge/Spotify-1DB954?style=for-the-badge&logo=spotify&logoColor=white&labelColor=1DB954" alt="Listen on Spotify" />
+  </a>
+</div>
+
+<div align="center">
+  <a href="https://open.spotify.com/track/7BhmwvCdQZNwuQXSHw5TzP" target="_blank">
+    <img src="https://i.scdn.co/image/ab67616d0000b273e4cb6c3fbc91c26ef8e9c3f6" alt="Headlights - Alan Walker" width="250" style="border-radius:15px; box-shadow: 0 8px 32px rgba(29, 185, 84, 0.3);">
+  </a>
+</div>
+
+<div align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=14&pause=2000&color=FFFFFF&center=true&vCenter=true&random=false&width=600&lines=🎶+Click+above+to+experience+the+journey+🎶;🌟+Alan+Walker's+signature+electronic+vibes+🌟;💫+Perfect+coding+soundtrack+💫" alt="Music Description" />
+</div>
+
+<p align="center">
+  🎧 <em>The perfect soundtrack for late-night coding sessions</em> 🎧
+</p>
+
+---
+
+## 🚀 Deployment Status
+
+<div align="center">
+  <a href="https://app.netlify.com/sites/insta-clone-by-mahesh-shinde/deploys">
+    <img src="https://api.netlify.com/api/v1/badges/43a533e8-16e0-456b-b191-37f63b943feb/deploy-status" alt="Netlify Status"/>
+  </a>
 </div>
 
 ---
